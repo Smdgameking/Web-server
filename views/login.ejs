@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+        
+    height: 100vh;
+    background: 
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("page 3.jpg")
+        no-repeat center center fixed;
+    background-size: cover;
+            display: flex;
+            justify-content: center;   /* Horizontal center */
+    align-items: center;
+    color: black;
+           margin: 0;
+}
+
+        .box {
+            background: 
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("page 3.jpg")
+        no-repeat center center fixed;
+    background-size: cover;
+            backdrop-filter: blur(60px);
+            padding: 30px;
+            border-radius: 50px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            color: white;
+            align-items: center;
+            text-align: center;
+    right: 30%;              
+    top: 50%;               
+    
+    width: 80%;
+        }
+
+        input, select {
+            font-size: 20px;
+    width: 80%;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 10px;
+    border: none;
+}
+    h1{
+        font-size: 48px;
+        font-weight: bold;
+    }
+.btn-group {
+    display: flex;
+    justify-content: center;   /* Center horizontally */
+    gap: 20px;                 /* Space between buttons */
+    margin-top: 20px;
+    
+}
+
+.back-btn {
+    background: #008080;
+    color: white;
+    font-size: 15px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.continue-btn {
+    background: #007bff;
+    color: white;
+    font-size: 15px;
+    padding: 15px 10px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+        
+    label {
+    font-size: 20px;   /* Change size here */
+    font-weight: bold; /* Optional */
+    color: white;      /* Optional (better for dark background) */
+}
+
+        
+    </style>
+</head>
+<body>
+
+<div class="box">
+  <h1>Enter Your Details</h1>
+  <form action="/result" method="POST">
+      <input type="text" id="name" placeholder="Enter Name" name="UserName" required><br>
+      <input type="number" name="UserAge" id="Age" placeholder="Enter Age" required><br>
+      <label for="l1">Are you educated?</label><br>
+      <select id="l1" name="UserEducation" required>
+      <option value="">-- Select --</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      </select>    <br> 
+      <div class="btn-group">
+      <button type="button" onclick="back()" class="back-btn">Back</button>
+      <input type="submit" value="Continue" class="continue-btn">
+  </form>
+</div>
+</div>
+<script>
+  function back() {
+    window.location.href = "info";
+}
+</script>
+</body>
+</html>

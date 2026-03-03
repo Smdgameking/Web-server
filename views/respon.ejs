@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Career Recommendation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { background:#111; color:white; font-family:Arial; padding:20px; }
+        h2 { color:#00ccff; }
+        .section { margin-bottom:30px; padding:15px; background:#1e1e1e; border-radius:10px; }
+        .job-card { background:#2a2a2a; padding:15px; margin:10px 0; border-radius:8px; }
+        h4 { color:#00ccff; }
+        ul { padding-left:20px; }
+        li { margin-bottom:8px; }
+        .btn { padding:10px 15px; background:#007bff; color:white; text-decoration:none; border-radius:5px; }
+    </style>
+</head>
+<body>
+
+<h1>AI Career Recommendation Result 🚀</h1>
+
+<!-- Government Jobs -->
+<div class="section">
+<h2>🏛 Government Jobs</h2>
+
+<% if (data.government_jobs.length) { %>
+    <% data.government_jobs.forEach(job => { %>
+        <div class="job-card">
+            <h4><%= job.job_title %></h4>
+            <p><b>Fresher:</b> <%= job.fresher_salary %></p>
+            <p><b>Experienced:</b> <%= job.experienced_salary %></p>
+            <p><%= job.description %></p>
+        </div>
+    <% }) %>
+<% } else { %>
+    <p>No government jobs found.</p>
+<% } %>
+
+</div>
+
+<!-- Private Jobs -->
+<div class="section">
+<h2>🏢 Private Jobs</h2>
+
+<% if (data.private_jobs.length) { %>
+    <% data.private_jobs.forEach(job => { %>
+        <div class="job-card">
+            <h4><%= job.job_title %></h4>
+            <p><b>Fresher:</b> <%= job.fresher_salary %></p>
+            <p><b>Experienced:</b> <%= job.experienced_salary %></p>
+            <p><%= job.description %></p>
+        </div>
+    <% }) %>
+<% } else { %>
+    <p>No private jobs found.</p>
+<% } %>
+
+</div>
+
+<!-- Related Interests -->
+<div class="section">
+<h2>📌 Related Interests</h2>
+<ul>
+<% data.related_interests.forEach(item => { %>
+<li><%= item %></li>
+<% }) %>
+</ul>
+</div>
+
+<!-- Career Paths -->
+<div class="section">
+<h2>💼 Career Paths</h2>
+<ul>
+<% data.career_paths.forEach(item => { %>
+<li><%= item %></li>
+<% }) %>
+</ul>
+</div>
+
+<!-- Required Skills -->
+<div class="section">
+<h2>🛠 Required Skills</h2>
+<ul>
+<% data.required_skills.forEach(item => { %>
+<li><%= item %></li>
+<% }) %>
+</ul>
+</div>
+
+<!-- Certificates -->
+<div class="section">
+<h2>🎓 Useful Certificates</h2>
+<ul>
+<% data.Useful_Certificates.forEach(item => { %>
+<li><%= item %></li>
+<% }) %>
+</ul>
+</div>
+
+<!-- Roadmap -->
+<div class="section">
+<h2>🚀 Learning Roadmap</h2>
+<ul>
+<% data.learning_roadmap.forEach(item => { %>
+<li><%= item %></li>
+<% }) %>
+</ul>
+</div>
+
+<br>
+<a href="/" class="btn">⬅ Back</a>
+
+</body>
+</html>

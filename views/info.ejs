@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Career information</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url("page 2.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Paragraph - Top Center */
+        p {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+          font-weight: bold;
+            color: white;
+            margin: 0;
+        }
+.back-btn {
+    position: fixed;
+    left: 10%;
+    bottom: 5%;
+    background: #008080;
+    color: white;
+    font-size: 18px;
+    padding: 15px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.next-btn {
+    position: fixed;
+    right: 10%;
+    bottom: 5%;
+    padding: 15px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+        /* Container - Left Center */
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            
+            transform: translateY(-60%);
+            width: 80%;
+            padding: 20px;
+            border-radius: 30px;
+            background: url("/storage/emulated/0/Pictures/IMG_20260226_084944.jpg");
+            box-shadow: 0 0 3px rgba(0,0,0,0.1);
+        }
+
+        ul {
+            padding-left: 20px;
+            font-size: 15px;
+            color: black;
+        }
+
+        
+ 
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+<p>Career Growth Recommendations</p>
+
+<div class="container">
+    <ul>
+        <li>Find the right career based on your skills.</li>
+        <li>Suggests suitable job roles according to education level.</li>
+      <li>Learn about different career options you may not know.</li>
+      <li>Suggestions are based on current industry demand and growth.</li>
+      <li>Get recommendations immediately after entering your details.</li>
+      <li>Provides required technical and soft skills for each career.</li>
+        <li>Recommends useful certifications to improve knowledge.</li>
+        <li>Gives a step-by-step learning roadmap.</li>
+        <li>Saves time by guiding students in the correct direction.</li>
+      <li>Make smarter career decisions with confidence.</li>
+    </ul>
+</div>
+    <button onclick="back()" class="back-btn">Back</button>
+<button onclick="goToNextPage()" class="next-btn">Continue</button>
+     
+<script>
+function goToNextPage() {
+    window.location.href = "login";
+}
+  function back() {
+    window.location.href = "index";
+}
+</script>
+
+</body>
+</html>

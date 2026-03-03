@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Career Recommendation</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 10px;
+    font-family: Arial, sans-serif;
+    background:
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url("https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d")
+        no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    line-height: 1.5;
+}
+
+h1, h2 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+input {
+    padding: 10px;
+    margin: 8px;
+    width: 220px;
+    border-radius: 6px;
+    border: none;
+}
+
+.container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+button, input[type="submit"], input[type="reset"] {
+    padding: 10px;
+    width: 120px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#submitBtn {
+    background: #007bff;
+    color: white;
+}
+
+#submitBtn:disabled {
+    background: #444;
+}
+
+#clearBtn {
+    background: red;
+    color: white;
+}
+
+#copyBtn {
+    background: #00ccff;
+    color: black;
+}
+
+/* Loading Overlay */
+#loadingOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+}
+
+.loader {
+    border: 6px solid #222;
+    border-top: 6px solid #00ccff;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px #00ccff;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loadingOverlay p {
+    color: #00ccff;
+    font-size: 18px;
+}
+
+.card {
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+#output {
+    margin: 10px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay">
+    <div class="loader"></div>
+    <p>Generating AI Recommendations...</p>
+</div>
+
+<!-- User Info -->
+<div class="card">
+    <h2>User Information</h2>
+    <p><b>Name:</b> <%= usename %> </p>
+    <p><b>Age:</b> <%= usage %> </p>
+    <p><b>Education:</b> <%= education %></p>
+</div>
+
+<!-- Form -->
+<div class="container">
+    <h1>Career Recommendation System</h1>
+
+    <form id="careerForm" action="/reco" method="post">
+        <label>Skill</label><br>
+        <input type="text" name="skill" id="skillInput" placeholder="Java, Python" required><br>
+
+        <label>Education</label><br>
+        <input type="text" name="education" id="education" placeholder="Diploma, BTech" required><br>
+
+        <input type="submit" value="Submit" id="submitBtn">
+        <input type="reset" value="Clear" id="clearBtn">
+    </form>
+</div>
+
+<!-- Output Section -->
+<div id="output"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    const form = document.getElementById("careerForm");
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    const submitBtn = document.getElementById("submitBtn");
+
+    form.addEventListener("submit", function(e) {
+
+        const skillValue = document.getElementById("skillInput").value.trim();
+
+        if (!skillValue) {
+            e.preventDefault();
+            return;
+        }
+
+        submitBtn.disabled = true;
+        loadingOverlay.style.display = "flex";
+    });
+
+});
+</script>
+
+</body>
+</html>
