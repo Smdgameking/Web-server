@@ -39,7 +39,7 @@ app.post("/result", (req, res) => {
     });
 });
 
-// ================= AI ROUTE (GEMINI) =================
+// ================= AI ROUTE (GEMINI STABLE) =================
 
 app.post("/reco", async (req, res) => {
 
@@ -56,26 +56,22 @@ app.post("/reco", async (req, res) => {
             `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${process.env.API_KEY}`,
             {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     contents: [
                         {
                             parts: [
                                 {
                                     text: `
-You must return ONLY valid JSON. No markdown.
+Return ONLY valid JSON. No markdown. No explanation.
 
 My Skills: ${skill}
 My Education: ${education}
 
 Generate realistic Indian career recommendations.
 
-You MUST fill ALL arrays with data.
-DO NOT return empty arrays.
+Return this exact JSON format:
 
-Return JSON format:
 {
   "government_jobs": [
     {
@@ -101,10 +97,10 @@ Return JSON format:
 }
 
 Rules:
-- Minimum 5 items in each array
-- Salaries must be in ₹ per annum
-- Description must be 2 lines
-- Return ONLY valid JSON
+- Minimum 3 items in each array
+- Keep descriptions short (1 line)
+- Salaries in ₹ per annum
+- Return ONLY JSON
 `
                                 }
                             ]
@@ -112,7 +108,7 @@ Rules:
                     ],
                     generationConfig: {
                         temperature: 0.7,
-                        maxOutputTokens: 2000
+                        maxOutputTokens: 4000
                     }
                 })
             }
@@ -125,21 +121,23 @@ Rules:
             return res.send("Invalid AI response");
         }
 
-        let aiText = data.candidates[0].content.parts[0].text;
+        let aiText = data.candidates[0].content.parts[0].text.trim();
 
-        // Remove accidental markdown formatting
-        aiText = aiText
-            .replace(/```json/g, "")
-            .replace(/```/g, "")
-            .trim();
+        // 🛡️ SAFE JSON EXTRACTION
+        const firstBrace = aiText.indexOf("{");
+        const lastBrace = aiText.lastIndexOf("}");
+
+        if (firstBrace !== -1 && lastBrace !== -1) {
+            aiText = aiText.substring(firstBrace, lastBrace + 1);
+        }
 
         let parsedData;
 
         try {
             parsedData = JSON.parse(aiText);
         } catch (err) {
-            console.log("❌ Bad JSON:", aiText);
-            return res.send("AI returned invalid JSON format");
+            console.log("❌ JSON Parsing Failed:", aiText);
+            return res.send("AI returned incomplete JSON");
         }
 
         // Ensure arrays always exist
@@ -153,7 +151,7 @@ Rules:
             learning_roadmap: parsedData.learning_roadmap || []
         };
 
-        console.log("✅ Data received from Gemini");
+        console.log("✅ Gemini Response Parsed Successfully");
 
         res.render("respon", { data: parsedData });
 
