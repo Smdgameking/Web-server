@@ -1,8 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const fetch = require("node-fetch");
 require("dotenv").config();
 
 const app = express();
+
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -12,8 +14,9 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
     res.render("index");
 });
-app.get("/index", (req, res)=>{
-        res.render("index");
+
+app.get("/index", (req, res) => {
+    res.render("index");
 });
 
 app.get("/info", (req, res) => {
@@ -29,15 +32,14 @@ app.post("/result", (req, res) => {
     const age = req.body.UserAge;
     const educ = req.body.UserEducation;
 
-    // Send data to result.ejs
-    res.render("res",{
-      usename: username,
-      usage: age,
-      education: educ
+    res.render("res", {
+        usename: username,
+        usage: age,
+        education: educ
     });
 });
 
-// ================= AI ROUTE =================
+// ================= AI ROUTE (GEMINI) =================
 
 app.post("/reco", async (req, res) => {
 
@@ -51,23 +53,20 @@ app.post("/reco", async (req, res) => {
     try {
 
         const response = await fetch(
-            "https://openrouter.ai/api/v1/chat/completions",
+            `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${process.env.API_KEY}`,
             {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${process.env.API_KEY}`
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    model: "openai/gpt-4o-mini",
-                    messages: [
+                    contents: [
                         {
-                            role: "system",
-                            content: "You must return ONLY valid JSON. No markdown."
-                        },
-                        {
-                            role: "user",
-                            content: `
+                            parts: [
+                                {
+                                    text: `
+You must return ONLY valid JSON. No markdown.
+
 My Skills: ${skill}
 My Education: ${education}
 
@@ -107,26 +106,28 @@ Rules:
 - Description must be 2 lines
 - Return ONLY valid JSON
 `
+                                }
+                            ]
                         }
                     ],
-                    temperature: 0.7,
-                    max_tokens: 1500
+                    generationConfig: {
+                        temperature: 0.7,
+                        maxOutputTokens: 2000
+                    }
                 })
             }
         );
 
         const data = await response.json();
 
-        
-
-        if (!data.choices || !data.choices[0]) {
+        if (!data.candidates || !data.candidates[0]) {
+            console.log("Invalid Gemini response:", data);
             return res.send("Invalid AI response");
         }
 
-        let aiText = data.choices[0].message.content;
+        let aiText = data.candidates[0].content.parts[0].text;
 
-        
-
+        // Remove accidental markdown formatting
         aiText = aiText
             .replace(/```json/g, "")
             .replace(/```/g, "")
@@ -141,7 +142,7 @@ Rules:
             return res.send("AI returned invalid JSON format");
         }
 
-        // 🔥 Ensure arrays always exist
+        // Ensure arrays always exist
         parsedData = {
             government_jobs: parsedData.government_jobs || [],
             private_jobs: parsedData.private_jobs || [],
@@ -152,18 +153,21 @@ Rules:
             learning_roadmap: parsedData.learning_roadmap || []
         };
 
-        console.log("Data recived from AI");
+        console.log("✅ Data received from Gemini");
+
         res.render("respon", { data: parsedData });
 
     } catch (error) {
-        console.log("❌ API ERROR:", error);
-        res.send("Error calling AI API");
+        console.log("❌ Gemini API ERROR:", error);
+        res.send("Error calling Gemini API");
     }
 
 });
 
 // ================= SERVER =================
 
-app.listen(3000, () => {
-    console.log("🚀 Server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
 });
