@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://careernavigator-cq9v.onrender.com/sitemap.xml
