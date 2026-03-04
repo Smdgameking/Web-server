@@ -26,10 +26,14 @@ body {
 
 h1, h2 {
     text-align: center;
+font-size: 70px;
+    margin: 20px 0;
+}
+h3{
+    text-align: center;
 font-size: 50px;
     margin: 20px 0;
 }
-
 input {
     padding: 10px;
     margin: 8px;
@@ -147,7 +151,7 @@ font-size: 25px;
 <!-- Form -->
 <div class="container">
     <h1>Career Recommendation System</h1>
-
+<h3>Enter the Skill and Education level</h3>
     <form id="careerForm" action="/reco" method="post">
         <label>Skill</label>
         <input type="text" name="skill" id="skillInput" placeholder="Java, Python" required><br>
