@@ -26,14 +26,15 @@
         no-repeat center center fixed;
     background-size: cover;
             backdrop-filter: blur(60px);
+position: absolute;
             padding: 30px;
             border-radius: 50px;
             box-shadow: 0 0 30px rgba(0,0,0,0.1);
             color: white;
             align-items: center;
             text-align: center;
-    right: 30%;              
-    top: 50%;               
+    right: 60px;              
+    top: 15%;               
     
     width: 40%;
         }
@@ -53,16 +54,20 @@
 .btn-group {
     display: flex;
     justify-content: center;   /* Center horizontally */
-    gap: 20px;                 /* Space between buttons */
+    gap: 50px;                 /* Space between buttons */
     margin-top: 20px;
+flex-wrap: wrap;
+flex-direction: row;
+align-items: baseline;
     
 }
 
 .back-btn {
     background: #008080;
     color: white;
-    font-size: 15px;
-    padding: 15px 30px;
+    font-size: 20px;
+    height: 65px;
+width: 130px;
     border: none;
     border-radius: 30px;
     cursor: pointer;
@@ -71,8 +76,9 @@
 .continue-btn {
     background: #007bff;
     color: white;
-    font-size: 15px;
-    padding: 15px 10px;
+    font-size: 20px;
+    height: 65px;
+width: 130px;
     border: none;
     border-radius: 30px;
     cursor: pointer;
