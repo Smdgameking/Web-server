@@ -175,7 +175,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const skillValue = document.getElementById("skillInput").value.trim();
 
-        if (!skillValue) {
+        if (skillValue === "") {
+            alert("Enter the skill");
             e.preventDefault();
             return;
         }
