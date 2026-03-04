@@ -26,6 +26,7 @@ body {
 
 h1, h2 {
     text-align: center;
+font-size: 50px;
     margin: 20px 0;
 }
 
@@ -69,6 +70,13 @@ button, input[type="submit"], input[type="reset"] {
     color: black;
 }
 
+    .back-btn{
+    background: #008080;   /* Modern AI look */
+    font-size: 18px;
+    cursor: pointer;
+    width: 120px;
+        color: white;
+}
 /* Loading Overlay */
 #loadingOverlay {
     position: fixed;
@@ -104,8 +112,9 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .card {
-    text-align: center;
+    text-align: left;
     padding: 15px;
+font-size: 25px;
     margin-top: 20px;
 }
 
@@ -140,19 +149,16 @@ button, input[type="submit"], input[type="reset"] {
     <h1>Career Recommendation System</h1>
 
     <form id="careerForm" action="/reco" method="post">
-        <label>Skill</label><br>
+        <label>Skill</label>
         <input type="text" name="skill" id="skillInput" placeholder="Java, Python" required><br>
 
-        <label>Education</label><br>
+        <label>Education</label>
         <input type="text" name="education" id="education" placeholder="Diploma, BTech" required><br>
-
+<button onclick="back()" class="back-btn">Back</button>
         <input type="submit" value="Submit" id="submitBtn">
         <input type="reset" value="Clear" id="clearBtn">
     </form>
 </div>
-
-<!-- Output Section -->
-<div id="output"></div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -175,6 +181,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 });
+function back() {
+    window.location.href = "login.html";
+}
 </script>
 
 </body>
