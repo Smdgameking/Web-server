@@ -68,7 +68,9 @@ app.post("/reco", async (req, res) => {
             `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${process.env.API_KEY}`,
             {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify({
                     contents: [
                         {
@@ -126,16 +128,28 @@ Rules:
             }
         );
 
+        // 🔍 PRINT HTTP STATUS
+        console.log("Gemini HTTP Status:", response.status);
+
         const data = await response.json();
 
+        // 🔍 PRINT FULL GEMINI RESPONSE
+        console.log("Full Gemini Response:");
+        console.dir(data, { depth: null });
+
         if (!data.candidates || !data.candidates[0]) {
-            console.log("Invalid Gemini response:", data);
+            console.log("❌ Gemini returned no candidates");
             return res.send("Invalid AI response");
         }
 
-        let aiText = data.candidates[0].content.parts[0].text.trim();
+        let aiText = data.candidates[0].content.parts[0].text;
 
-        // 🛡️ SAFE JSON EXTRACTION
+        console.log("Raw AI Text:");
+        console.log(aiText);
+
+        aiText = aiText.trim();
+
+        // 🛡️ Extract JSON safely
         const firstBrace = aiText.indexOf("{");
         const lastBrace = aiText.lastIndexOf("}");
 
@@ -143,16 +157,23 @@ Rules:
             aiText = aiText.substring(firstBrace, lastBrace + 1);
         }
 
+        console.log("Extracted JSON:");
+        console.log(aiText);
+
         let parsedData;
 
         try {
             parsedData = JSON.parse(aiText);
         } catch (err) {
-            console.log("❌ JSON Parsing Failed:", aiText);
-            return res.send("AI returned incomplete JSON");
+            console.log("❌ JSON Parsing Error:");
+            console.log(err.message);
+            console.log("Broken JSON:");
+            console.log(aiText);
+
+            return res.send("AI returned invalid JSON");
         }
 
-        // Ensure arrays always exist
+        // Ensure arrays exist
         parsedData = {
             government_jobs: parsedData.government_jobs || [],
             private_jobs: parsedData.private_jobs || [],
@@ -163,16 +184,25 @@ Rules:
             learning_roadmap: parsedData.learning_roadmap || []
         };
 
-        console.log("✅ Gemini Response Parsed Successfully");
+        console.log("✅ JSON Parsed Successfully");
 
         res.render("respon", { data: parsedData });
 
     } catch (error) {
-        console.log("❌ Gemini API ERROR:", error);
+
+        console.log("❌ Gemini API ERROR");
+        console.log(error);
+
+        if (error.response) {
+            console.log("Status:", error.response.status);
+            console.log("Data:", error.response.data);
+        }
+
         res.send("Error calling Gemini API");
     }
 
 });
+
 
 // ================= SERVER =================
 
