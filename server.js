@@ -52,7 +52,6 @@ app.post("/result", (req, res) => {
 });
 
 // ================= AI ROUTE (GEMINI STABLE) =================
-
 app.post("/reco", async (req, res) => {
 
     const skill = req.body.skill;
@@ -65,30 +64,29 @@ app.post("/reco", async (req, res) => {
     try {
 
         const response = await fetch(
-            `https://openrouter.ai/api/v1/chat/completions`,
+            "https://openrouter.ai/api/v1/chat/completions",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                "Authorization":"Bearer ${process.env.API_KEY}",
-                "HTTP-Referer": "https://localhost",
-                "X-Title": "AI Career Recommendation"
+                    "Authorization": `Bearer ${process.env.API_KEY}`,
+                    "HTTP-Referer": "https://careernavigator-cq9v.onrender.com",
+                    "X-Title": "AI Career Recommendation"
                 },
                 body: JSON.stringify({
                     model: "openai/gpt-4o-mini",
-                    contents: [
+                    messages: [
                         {
-                            parts: [
-                                {
-                                    text: `
-Return ONLY valid JSON. No markdown. No explanation.
+                            role: "user",
+                            content: `
+Return ONLY valid JSON. No markdown.
 
 My Skills: ${skill}
 My Education: ${education}
 
 Generate realistic Indian career recommendations.
 
-Return this exact JSON format:
+Return JSON format:
 
 {
   "government_jobs": [
@@ -116,44 +114,31 @@ Return this exact JSON format:
 
 Rules:
 - Minimum 3 items in each array
-- Keep descriptions short (1 line)
 - Salaries in ₹ per annum
-- Return ONLY JSON
+- Short descriptions
 `
-                                }
-                            ]
                         }
                     ],
-                    generationConfig: {
-                        temperature: 0.7,
-                        maxOutputTokens: 4000
-                    }
+                    temperature: 0.7,
+                    max_tokens: 1200
                 })
             }
         );
 
-        // 🔍 PRINT HTTP STATUS
-        console.log("Gemini HTTP Status:", response.status);
+        console.log("HTTP Status:", response.status);
 
         const data = await response.json();
 
-        // 🔍 PRINT FULL GEMINI RESPONSE
-        console.log("Full Gemini Response:");
+        console.log("Full AI Response:");
         console.dir(data, { depth: null });
 
-        if (!data.candidates || !data.candidates[0]) {
-            console.log("❌ Gemini returned no candidates");
+        if (!data.choices || !data.choices[0]) {
             return res.send("Invalid AI response");
         }
 
-        let aiText = data.candidates[0].content.parts[0].text;
+        let aiText = data.choices[0].message.content.trim();
 
-        console.log("Raw AI Text:");
-        console.log(aiText);
-
-        aiText = aiText.trim();
-
-        // 🛡️ Extract JSON safely
+        // Extract JSON
         const firstBrace = aiText.indexOf("{");
         const lastBrace = aiText.lastIndexOf("}");
 
@@ -161,23 +146,15 @@ Rules:
             aiText = aiText.substring(firstBrace, lastBrace + 1);
         }
 
-        console.log("Extracted JSON:");
-        console.log(aiText);
-
         let parsedData;
 
         try {
             parsedData = JSON.parse(aiText);
         } catch (err) {
-            console.log("❌ JSON Parsing Error:");
-            console.log(err.message);
-            console.log("Broken JSON:");
-            console.log(aiText);
-
+            console.log("JSON parse error:", err);
             return res.send("AI returned invalid JSON");
         }
 
-        // Ensure arrays exist
         parsedData = {
             government_jobs: parsedData.government_jobs || [],
             private_jobs: parsedData.private_jobs || [],
@@ -188,21 +165,14 @@ Rules:
             learning_roadmap: parsedData.learning_roadmap || []
         };
 
-        console.log("✅ JSON Parsed Successfully");
-
         res.render("respon", { data: parsedData });
 
     } catch (error) {
 
-        console.log("❌ Gemini API ERROR");
-        console.log(error);
+        console.log("API ERROR:", error);
 
-        if (error.response) {
-            console.log("Status:", error.response.status);
-            console.log("Data:", error.response.data);
-        }
+        res.send("Error calling AI API");
 
-        res.send("Error calling Gemini API");
     }
 
 });
