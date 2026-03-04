@@ -15,6 +15,18 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
+app.get('/sitemap.xml', (req, res) => {
+  res.type('application/xml');
+
+  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+      <loc>https://careernavigator-cq9v.onrender.com/</loc>
+      <lastmod>2026-03-04</lastmod>
+    </url>
+  </urlset>`);
+});
+
 app.get("/index", (req, res) => {
     res.render("index");
 });
