@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body { background:#111; color:white; font-family:Arial; padding:20px; }
-        h2 { color:#00ccff; }
+        h2 { font-size: 18px; color:#00ccff; }
         .section { margin-bottom:30px; padding:15px; background:#1e1e1e; border-radius:10px; }
         .job-card { background:#2a2a2a; padding:15px; margin:10px 0; border-radius:8px; }
         h4 { color:#00ccff; }
-
-        ul { padding-left:20px; }
+h1{ font-size: 24px; font-weight: bold;}
+        ul { font-size: 16px; padding-left:20px; }
         li { margin-bottom:8px; }
         .btn { padding:10px 15px; background:#007bff; color:white; text-decoration:none; border-radius:5px; }
     </style>
@@ -74,7 +74,7 @@
 <% if (data.government_jobs.length) { %>
     <% data.government_jobs.forEach(job => { %>
         <div class="job-card">
-            <h4><%= job.job_title %></h4>
+            <h3><%= job.job_title %></h3>
             <p><b>Fresher:</b> <%= job.fresher_salary %></p>
             <p><b>Experienced:</b> <%= job.experienced_salary %></p>
             <p><%= job.description %></p>
@@ -93,7 +93,7 @@
 <% if (data.private_jobs.length) { %>
     <% data.private_jobs.forEach(job => { %>
         <div class="job-card">
-            <h4><%= job.job_title %></h4>
+            <h3><%= job.job_title %></h3>
             <p><b>Fresher:</b> <%= job.fresher_salary %></p>
             <p><b>Experienced:</b> <%= job.experienced_salary %></p>
             <p><%= job.description %></p>
@@ -106,7 +106,7 @@
 </div>
 
 <br>
-<a href="/res" class="btn">⬅ Back</a>
+<a href="/" class="btn">⬅ Back</a>
 
 </body>
 </html>
