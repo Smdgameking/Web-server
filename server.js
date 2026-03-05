@@ -39,7 +39,11 @@ app.get("/login", (req, res) => {
     res.render("login");
 });
 app.get("/res", (req, res)=>{
-    res.render("res", {});
+    res.render("res", {
+        usename: "",
+        usage: "",
+        education: ""
+    });
 });
 app.post("/result", (req, res) => {
     const username = req.body.UserName;
