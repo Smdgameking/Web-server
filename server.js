@@ -38,7 +38,9 @@ app.get("/info", (req, res) => {
 app.get("/login", (req, res) => {
     res.render("login");
 });
-
+app.get("/res", (req, res)=>{
+    res.render("res");
+});
 app.post("/result", (req, res) => {
     const username = req.body.UserName;
     const age = req.body.UserAge;
