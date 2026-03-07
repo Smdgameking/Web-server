@@ -93,7 +93,18 @@ console.log("[DEBUG]",...msg);
 
 /* ================= FIREBASE ================= */
 
-const serviceAccount = JSON.parse(process.env.FIREBASE_KEY);
+let serviceAccount;
+
+if(process.env.FIREBASE_KEY){
+
+serviceAccount = JSON.parse(process.env.FIREBASE_KEY);
+
+}else{
+
+console.log("❌ FIREBASE_KEY not found in environment variables");
+process.exit(1);
+
+}
 
 admin.initializeApp({
 credential:admin.credential.cert(serviceAccount)
