@@ -27,7 +27,7 @@ console.log("❌ Java is NOT installed.");
 
 console.log("Install it with:");
 
-console.log("pkg install openjdk-17");
+console.log("apt-get install -y openjdk-17");
 
 resolve(false);
 
