@@ -93,7 +93,7 @@ console.log("[DEBUG]",...msg);
 
 /* ================= FIREBASE ================= */
 
-const serviceAccount = require("./careerrecomendationai-firebase-adminsdk-fbsvc-b39314f874.json");
+const serviceAccount = JSON.parse(process.env.FIREBASE_KEY);
 
 admin.initializeApp({
 credential:admin.credential.cert(serviceAccount)
