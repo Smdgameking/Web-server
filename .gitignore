@@ -1,2 +1,4 @@
 node_modules
 .env
+careerrecomendationai-firebase-adminsdk*.json
+temp

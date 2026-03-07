@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Exam</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:
+linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+url("page 3.jpg") no-repeat center center fixed;
+background-size:cover;
+color:white;
+}
+
+.container{
+padding:40px;
+}
+
+.exam-box{
+background:rgba(255,255,255,0.1);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+margin-bottom:20px;
+}
+
+.question{
+margin-bottom:20px;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:8px;
+background:#007bff;
+color:white;
+cursor:pointer;
+}
+
+.submit-btn{
+margin-top:20px;
+}
+
+input[type="text"]{
+padding:10px;
+border-radius:8px;
+border:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>AI Practice Exam</h1>
+
+<!-- Topic form -->
+
+<form action="/generateExam" method="POST">
+
+<input type="text" name="topic" placeholder="Enter topic (example: JavaScript)" required>
+
+<button type="submit">Generate Exam</button>
+
+</form>
+
+<br><br>
+
+<% if(questions){ %>
+
+<form id="examForm">
+
+<input type="hidden" id="topic" value="<%= typeof topic !== 'undefined' ? topic : '' %>">
+
+<% questions.forEach((q,index)=>{ %>
+
+<div class="exam-box">
+
+<div class="question">
+<b><%= index+1 %>. <%= q.question %></b>
+</div>
+
+<% q.options.forEach((opt,i)=>{ %>
+
+<label>
+<input type="radio" name="q<%=index%>" value="<%=i%>">
+<%= opt %>
+</label>
+<br>
+
+<% }) %>
+
+</div>
+
+<script>
+if(!window.answers){ window.answers = []; }
+window.answers[<%=index%>] = <%= q.answer %>;
+</script>
+
+<% }) %>
+
+<button type="button" class="submit-btn" onclick="submitExam()">Submit Exam</button>
+
+</form>
+
+<% } %>
+
+</div>
+
+<script>
+
+function submitExam(){
+
+let score = 0;
+const total = window.answers.length;
+
+for(let i=0;i<total;i++){
+
+const selected = document.querySelector(`input[name="q${i}"]:checked`);
+
+if(selected && parseInt(selected.value) === window.answers[i]){
+score++;
+}
+
+}
+
+const topic = document.getElementById("topic").value;
+
+fetch("/submitExam",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+topic:topic,
+score:score
+})
+})
+
+window.location.href="/dashboard";
+}
+
+</script>
+
+</body>
+</html>

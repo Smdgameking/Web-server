@@ -1,121 +1,168 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Details</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-        
-    height: 100vh;
-    background: 
-        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-        url("page 3.jpg")
-        no-repeat center center fixed;
-    background-size: cover;
-            display: flex;
-            justify-content: center;   /* Horizontal center */
-    align-items: center;
-    color: black;
-           margin: 0;
+<title>Account</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+height:100vh;
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial;
+background:
+linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+url("page 3.jpg") no-repeat center center fixed;
+background-size:cover;
 }
 
-        .box {
-            background: 
-        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-        url("page 3.jpg")
-        no-repeat center center fixed;
-    background-size: cover;
-            backdrop-filter: blur(60px);
-position: absolute;
-            padding: 30px;
-            border-radius: 50px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.1);
-            color: white;
-            align-items: center;
-            text-align: center;
-    right: 60px;              
-    top: 15%;               
-    
-    width: 40%;
-        }
-
-        input, select {
-            font-size: 20px;
-    width: 80%;
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 10px;
-    border: none;
-}
-    h1{
-        font-size: 48px;
-        font-weight: bold;
-    }
-.btn-group {
-    display: flex;
-    justify-content: center;   /* Center horizontally */
-    gap: 50px;                 /* Space between buttons */
-    margin-top: 20px;
-flex-wrap: wrap;
-flex-direction: row;
-align-items: baseline;
-    
+.container{
+width:350px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(20px);
+padding:40px;
+border-radius:20px;
+text-align:center;
+color:white;
 }
 
-.back-btn {
-    background: #008080;
-    color: white;
-    font-size: 20px;
-    height: 65px;
-width: 130px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
+.title{
+font-size:32px;
+margin-bottom:20px;
 }
 
-.continue-btn {
-    background: #007bff;
-    color: white;
-    font-size: 20px;
-    height: 65px;
-width: 130px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-}
-        
-    label {
-    font-size: 20px;   /* Change size here */
-    font-weight: bold; /* Optional */
-    color: white;      /* Optional (better for dark background) */
+.toggle{
+display:flex;
+justify-content:center;
+margin-bottom:20px;
 }
 
-        
-    </style>
+.toggle button{
+flex:1;
+padding:10px;
+border:none;
+cursor:pointer;
+background:#222;
+color:white;
+}
+
+.toggle button.active{
+background:#007bff;
+}
+
+input{
+width:90%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:none;
+font-size:16px;
+}
+
+.main-btn{
+width:95%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#007bff;
+color:white;
+cursor:pointer;
+font-size:16px;
+}
+
+.switch-text{
+margin-top:15px;
+font-size:14px;
+}
+
+.switch-text span{
+color:#4ea3ff;
+cursor:pointer;
+}
+
+</style>
 </head>
+
 <body>
 
-<div class="box">
-  <h1>Enter Your Details</h1>
-  <form action="/result" method="POST">
-      <input type="text" id="name" placeholder="Enter Name" name="UserName" required><br>
-      <input type="number" name="UserAge" id="Age" placeholder="Enter Age" required><br>
-      <label for="l1">Are you educated?</label><br>
-      <select id="l1" name="UserEducation" required>
-      <option value="">-- Select --</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
-      </select>    <br> 
-      <div class="btn-group">
-      <button type="button" onclick="back()" class="back-btn">Back</button>
-      <input type="submit" value="Continue" class="continue-btn">
-  </form>
+<div class="container">
+
+<div class="title" id="formTitle">Login</div>
+
+<div class="toggle">
+<button id="loginTab" class="active">Login</button>
+<button id="registerTab">Register</button>
 </div>
+
+<input type="email" id="email" placeholder="Enter Email">
+<input type="password" id="password" placeholder="Enter Password">
+
+<button class="main-btn" id="submitBtn">Login</button>
+
+<div class="switch-text">
+<span id="switchMode">Don't have an account? Register</span>
 </div>
+
+</div>
+
+
 <script>
-  function back() {
-    window.location.href = "info";
+
+let mode="login";
+
+const title=document.getElementById("formTitle");
+const submitBtn=document.getElementById("submitBtn");
+const loginTab=document.getElementById("loginTab");
+const registerTab=document.getElementById("registerTab");
+const switchMode=document.getElementById("switchMode");
+
+function setLogin(){
+
+mode="login";
+
+title.innerText="Login";
+submitBtn.innerText="Login";
+
+loginTab.classList.add("active");
+registerTab.classList.remove("active");
+
+switchMode.innerText="Don't have an account? Register";
+
 }
+
+function setRegister(){
+
+mode="register";
+
+title.innerText="Register";
+submitBtn.innerText="Register";
+
+registerTab.classList.add("active");
+loginTab.classList.remove("active");
+
+switchMode.innerText="Already have an account? Login";
+
+}
+
+loginTab.onclick=setLogin;
+registerTab.onclick=setRegister;
+
+switchMode.onclick=function(){
+
+if(mode==="login"){
+setRegister();
+}else{
+setLogin();
+}
+
+};
+
 </script>
+
+<script type="module" src="/js/auth.js"></script>
+
 </body>
 </html>

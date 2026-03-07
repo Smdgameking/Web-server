@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:
+linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+url("page 3.jpg") no-repeat center center fixed;
+background-size:cover;
+color:white;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+}
+
+header h1{
+margin:0;
+}
+
+.logout{
+background:#ff4d4d;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+cursor:pointer;
+color:white;
+font-size:16px;
+}
+
+.container{
+padding:40px;
+}
+
+.welcome{
+font-size:28px;
+margin-bottom:30px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,0.1);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+background:rgba(255,255,255,0.2);
+}
+
+.card h2{
+margin-bottom:15px;
+}
+
+.card button{
+padding:10px 20px;
+border:none;
+border-radius:8px;
+background:#007bff;
+color:white;
+cursor:pointer;
+}
+
+footer{
+text-align:center;
+padding:20px;
+margin-top:40px;
+background:rgba(0,0,0,0.6);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Career Navigator</h1>
+
+<button class="logout" onclick="logout()">Logout</button>
+
+</header>
+
+<div class="container">
+
+<div class="welcome">
+Welcome to your Dashboard 🚀
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h2>AI Career Recommendation</h2>
+<p>Find the best career path based on your skills.</p>
+<button onclick="goCareer()">Open</button>
+</div>
+
+<div class="card">
+<h2>AI Courses</h2>
+<p>Learn new skills with AI guided lessons.</p>
+<button onclick="goCourses()">Open</button>
+</div>
+
+<div class="card">
+<h2>Practice & Exams</h2>
+<p>Test your knowledge with exercises.</p>
+<button onclick="goExam()">Open</button>
+</div>
+
+<div class="card">
+<h2>Your Profile</h2>
+<p>View your account and progress.</p>
+<button onclick="goProfile()">Open</button>
+</div>
+
+<div class="card">
+<h2>Exam Results</h2>
+<p>Check your previous exam scores.</p>
+<button onclick="goResults()">Open</button>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+Career Navigator AI System
+</footer>
+
+
+<script>
+
+function logout(){
+
+fetch("/logout")
+.then(()=>{
+window.location="/login";
+});
+
+}
+
+function goCareer(){
+window.location="/info";
+}
+
+function goCourses(){
+window.location="/courses";
+}
+
+function goExam(){
+window.location="/exam";
+}
+
+function goProfile(){
+window.location="/profile";
+}
+
+function goResults(){
+window.location="/results";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Java Course Roadmap</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:
+linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+url("/page 3.jpg") no-repeat center center fixed;
+background-size:cover;
+color:white;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px;
+}
+
+.lesson{
+background:rgba(255,255,255,0.1);
+padding:20px;
+margin-bottom:15px;
+border-radius:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.completed{
+background:rgba(0,255,0,0.2);
+}
+
+.locked{
+opacity:0.4;
+}
+
+button{
+padding:8px 15px;
+border:none;
+border-radius:6px;
+background:#007bff;
+color:white;
+cursor:pointer;
+}
+
+.progress{
+margin-bottom:20px;
+font-size:18px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Java Programming Course</h1>
+
+<div class="progress">
+Progress: <%= completed %> / <%= totalLessons %> lessons completed
+</div>
+<div style="background:#333;border-radius:10px;height:20px;margin-bottom:20px;">
+<div style="
+background:#00ff88;
+height:100%;
+width:<%= (completed/totalLessons)*100 %>%;
+border-radius:10px;
+"></div>
+</div>
+
+<% lessons.forEach(lesson => { %>
+
+<div class="lesson 
+<%= lesson.completed ? 'completed' : '' %> 
+<%= lesson.locked ? 'locked' : '' %>">
+
+<div>
+Lesson <%= lesson.number %> :
+<%= lesson.title %>
+</div>
+
+<div>
+
+<% if(!lesson.locked){ %>
+
+<button onclick="openLesson(<%= lesson.number %>)">
+Open
+</button>
+
+<% } else { %>
+
+🔒
+
+<% } %>
+
+</div>
+
+</div>
+
+<% }) %>
+
+</div>
+
+
+<script>
+
+function openLesson(num){
+window.location="/course/java/lesson/"+num;
+}
+
+</script>
+
+</body>
+</html>

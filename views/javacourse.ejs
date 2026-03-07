@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Java Course</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:
+linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+url("/page 3.jpg") no-repeat center center fixed;
+background-size:cover;
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.progressBar{
+width:100%;
+height:8px;
+background:#333;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:20px;
+}
+
+.progressFill{
+height:100%;
+background:#00ff88;
+width:<%= (lessonNumber/totalLessons)*100 %>%;
+}
+
+.card{
+background:rgba(255,255,255,0.1);
+padding:25px;
+border-radius:18px;
+backdrop-filter:blur(10px);
+box-shadow:0 8px 25px rgba(0,0,0,0.4);
+margin-bottom:20px;
+}
+
+h1,h2{
+margin-top:0;
+}
+
+button{
+padding:10px 18px;
+border:none;
+border-radius:6px;
+background:#007bff;
+color:white;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#0056d2;
+}
+
+textarea{
+width:100%;
+height:110px;
+border-radius:10px;
+border:none;
+padding:10px;
+margin-top:10px;
+}
+
+.editorExercise{
+height:220px;
+border-radius:8px;
+border:1px solid #444;
+margin-top:10px;
+}
+
+#editor{
+height:350px;
+border-radius:8px;
+border:1px solid #444;
+margin-top:10px;
+}
+
+.terminal{
+background:black;
+color:#00ff88;
+font-family:monospace;
+padding:12px;
+border-radius:10px;
+margin-top:12px;
+min-height:70px;
+white-space:pre-wrap;
+}
+
+.filename{
+background:#111;
+border:1px solid #333;
+border-radius:6px;
+padding:8px;
+color:white;
+width:200px;
+margin-bottom:10px;
+}
+
+.navButtons{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:10px;
+}
+
+img.lessonImage{
+width:100%;
+border-radius:10px;
+margin:15px 0;
+}
+
+@media(max-width:600px){
+
+#editor{
+height:280px;
+}
+
+.editorExercise{
+height:200px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Lesson <%= lessonNumber %> / <%= totalLessons %></h2>
+
+<div class="progressBar">
+<div class="progressFill"></div>
+</div>
+
+<!-- EXPLANATION -->
+
+<div class="card" id="explanation">
+
+<h1><%= lesson.title %></h1>
+
+<img class="lessonImage" src="/lesson.jpg">
+
+<p><%- lesson.explanation.replace(/\\n/g,"<br>") %></p>
+
+<button onclick="showExercises()">Start Exercises ➜</button>
+
+</div>
+
+
+<!-- EXERCISES -->
+
+<div class="card" id="exerciseBox" style="display:none">
+
+<h2>Exercises</h2>
+
+<% lesson.exercise.forEach((ex,i)=>{ %>
+
+<div>
+
+<p><b>Question <%= i+1 %></b></p>
+
+<p><%= ex.question %></p>
+
+<% if(ex.question.toLowerCase().includes("write") || ex.question.toLowerCase().includes("program")){ %>
+
+<div id="editorExercise<%=i%>" class="editorExercise"></div>
+
+<% }else{ %>
+
+<textarea id="answer<%=i%>"></textarea>
+
+<% } %>
+
+<p><small>Hint: <%= ex.hint %></small></p>
+
+</div>
+
+<% }) %>
+
+<div class="navButtons">
+
+<button onclick="showExplanation()">⬅ Back</button>
+
+<button onclick="checkExercises()">Check Answers ➜</button>
+
+</div>
+
+<div class="terminal" id="exerciseFeedback"></div>
+
+</div>
+
+
+<!-- PROJECT -->
+
+<div class="card" id="projectBox" style="display:none">
+
+<h2>Mini Project</h2>
+
+<div id="projectDetails">Loading project instructions...</div>
+
+<input id="filename" class="filename" value="Main.java">
+
+<div id="editor"></div>
+
+<div class="navButtons">
+
+<button onclick="runCode()">Run Code ▶</button>
+
+<button onclick="checkCode()">AI Review 🧠</button>
+
+<button onclick="completeLesson()">Finish Lesson ✔</button>
+
+</div>
+
+<div id="output" class="terminal"></div>
+
+<div id="feedback" class="terminal"></div>
+
+</div>
+
+</div>
+
+<script>
+
+/* navigation */
+
+function showExplanation(){
+document.getElementById("exerciseBox").style.display="none";
+document.getElementById("explanation").style.display="block";
+}
+
+function showExercises(){
+document.getElementById("explanation").style.display="none";
+document.getElementById("exerciseBox").style.display="block";
+}
+
+/* Monaco */
+
+require.config({
+paths:{vs:'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs'}
+});
+
+let editor;
+
+require(['vs/editor/editor.main'],function(){
+
+editor = monaco.editor.create(
+document.getElementById("editor"),
+{
+value:`public class Main {
+
+public static void main(String[] args){
+
+System.out.println("Hello Java");
+
+}
+
+}`,
+language:"java",
+theme:"vs-dark",
+automaticLayout:true,
+minimap:{enabled:false}
+});
+
+});
+
+/* Exercise editors */
+
+const exerciseEditors={};
+
+<% lesson.exercise.forEach((ex,i)=>{ %>
+
+<% if(ex.question.toLowerCase().includes("write") || ex.question.toLowerCase().includes("program")){ %>
+
+require(['vs/editor/editor.main'],function(){
+
+exerciseEditors[<%=i%>] = monaco.editor.create(
+document.getElementById("editorExercise<%=i%>"),
+{
+value:"",
+language:"java",
+theme:"vs-dark",
+automaticLayout:true,
+minimap:{enabled:false}
+});
+
+});
+
+<% } %>
+
+<% }) %>
+
+/* Run code */
+
+async function runCode(){
+
+const code=editor.getValue();
+const filename=document.getElementById("filename").value;
+
+document.getElementById("output").innerText="Running...";
+
+const res=await fetch("/runCode",{
+
+method:"POST",
+headers:{ "Content-Type":"application/json" },
+
+body:JSON.stringify({code,filename})
+
+});
+
+const data=await res.json();
+
+window.lastOutput=data.output || "No output";
+
+document.getElementById("output").innerText=window.lastOutput;
+
+}
+
+/* AI review */
+
+async function checkCode(){
+
+const code=editor.getValue();
+
+document.getElementById("feedback").innerText="AI reviewing...";
+
+const res=await fetch("/checkCode",{
+
+method:"POST",
+headers:{ "Content-Type":"application/json" },
+
+body:JSON.stringify({
+code,
+task:`<%= lesson.mini_project %>`,
+output:window.lastOutput||""
+})
+
+});
+
+const data=await res.json();
+
+document.getElementById("feedback").innerText=data.feedback;
+
+}
+
+/* Exercises check */
+
+async function checkExercises(){
+
+let answers=[];
+
+<% lesson.exercise.forEach((ex,i)=>{ %>
+
+<% if(ex.question.toLowerCase().includes("write") || ex.question.toLowerCase().includes("program")){ %>
+
+answers.push(exerciseEditors[<%=i%>].getValue());
+
+<% } else { %>
+
+answers.push(document.getElementById("answer<%=i%>").value.trim());
+
+<% } %>
+
+<% }) %>
+
+if(answers.some(a=>!a)){
+alert("Answer all questions first.");
+return;
+}
+
+document.getElementById("exerciseFeedback").innerText="Checking answers...";
+
+const res=await fetch("/checkExercise",{
+
+method:"POST",
+headers:{ "Content-Type":"application/json" },
+
+body:JSON.stringify({
+questions:<%- JSON.stringify(lesson.exercise) %>,
+answers
+})
+
+});
+
+const data=await res.json();
+
+document.getElementById("exerciseFeedback").innerText=data.feedback;
+
+if(data.passed){
+
+setTimeout(()=>{
+document.getElementById("exerciseBox").style.display="none";
+document.getElementById("projectBox").style.display="block";
+},1200)
+
+}
+
+}
+
+async function completeLesson(){
+
+if(!window.lastOutput){
+alert("Run the code first.");
+return;
+}
+
+document.getElementById("feedback").innerText="Checking solution...";
+
+const resCheck = await fetch("/checkCode",{
+
+method:"POST",
+
+headers:{ "Content-Type":"application/json" },
+
+body:JSON.stringify({
+code:editor.getValue(),
+task:`<%= lesson.mini_project %>`,
+output:window.lastOutput
+})
+
+});
+
+const result = await resCheck.json();
+
+document.getElementById("feedback").innerText=result.feedback;
+
+if(result.feedback.toLowerCase().includes("correct")){
+
+const res = await fetch("/completeLesson",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+course:"java",
+lesson:<%= lessonNumber %>
+})
+
+});
+
+const data = await res.text();
+
+if(data==="saved"){
+window.location="/course/java";
+}
+
+}else{
+
+alert("Fix your code before completing the lesson.");
+
+}
+
+}
+
+/* project details */
+
+async function loadProjectDetails(){
+
+const res = await fetch("/projectDetails",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+title:`<%= lesson.title %>`,
+explanation:`<%= lesson.explanation.replace(/`/g,"") %>`,
+examples:`<%- JSON.stringify(lesson.examples || []) %>`
+})
+
+});
+
+const data = await res.json();
+
+document.getElementById("projectDetails").innerHTML = data.details;
+
+}
+
+loadProjectDetails();
+
+</script>
+
+</body>
+</html>

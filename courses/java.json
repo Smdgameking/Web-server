@@ -1,0 +1,856 @@
+{
+  "title": "Java Programming: From Beginner to Intermediate",
+  "description": "A comprehensive Java programming course that takes you from zero knowledge to building real-world applications. You will learn core Java concepts step by step, with hands-on examples and projects inspired by the FreeCodeCamp teaching style. By the end of this course, you will be comfortable with object-oriented programming, collections, streams, and building CLI applications in Java.",
+  "lessons": [
+    {
+      "lesson_number": 1,
+      "title": "Introduction to Java",
+      "explanation": "Welcome to the Java Programming course! In this first lesson, we will explore what Java is, why it is one of the most popular programming languages in the world, and what makes it special compared to other languages.\n\nJava is a high-level, class-based, object-oriented programming language that was designed to have as few implementation dependencies as possible. It was created by James Gosling at Sun Microsystems and released in 1995. Since then, Java has grown to become one of the most widely used languages in the world, powering everything from Android apps to enterprise software.\n\nOne of Java's most important slogans is 'Write Once, Run Anywhere' (WORA). This means that Java code you write on your computer can run on any device that has a Java Virtual Machine (JVM) installed — whether it is Windows, Mac, Linux, or even a smartphone.\n\nHow does this work? When you write Java code, it is compiled into something called bytecode. This bytecode is not specific to any operating system or hardware — it is a universal format. The JVM on each device reads and executes this bytecode. Think of the JVM as a universal translator that understands Java bytecode and converts it into instructions your specific computer understands.\n\nJava is statically typed, which means every variable must be declared with a type before it is used. This catches many bugs at compile time rather than at runtime. Java is also strongly typed, meaning it enforces strict rules about how different types of data can interact.\n\nWhere is Java used today? Java powers Android mobile applications, large-scale enterprise applications (banking, healthcare, e-commerce), web back-end services and APIs, big data tools like Apache Hadoop and Spark, and scientific computing. Companies like Google, Amazon, Netflix, and LinkedIn rely heavily on Java.\n\nThe Java ecosystem is enormous. It includes the Java Development Kit (JDK), which is the toolkit developers use to build Java applications. It also includes thousands of libraries and frameworks like Spring, Hibernate, and Maven that make development faster and easier.\n\nIn this course, you will start from the very basics — writing your first Java program — and work your way up to building a complete command-line application. Each lesson builds on the previous one, so take your time and practice the exercises.",
+      "sections": [
+        {
+          "heading": "What is Java?",
+          "content": "Java is a general-purpose, object-oriented programming language developed by Sun Microsystems in 1995. It is platform-independent, meaning compiled Java programs can run on any device with a JVM installed."
+        },
+        {
+          "heading": "Why Learn Java?",
+          "content": "Java is consistently ranked among the top 3 programming languages worldwide. It is used in Android development, enterprise software, web back-ends, big data, and more. Its strict type system helps beginners write reliable code."
+        },
+        {
+          "heading": "How Java Works: JVM, JDK, JRE",
+          "content": "JDK (Java Development Kit) is what you install to write and compile Java. JRE (Java Runtime Environment) is what end users install to run Java programs. JVM (Java Virtual Machine) is the engine that executes Java bytecode on any platform."
+        },
+        {
+          "heading": "Your First Java Program Structure",
+          "content": "Every Java program must have at least one class, and the entry point of any Java application is the main method: public static void main(String[] args). This is where execution begins."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Hello, World!",
+          "code": "public class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}",
+          "explanation": "This is the simplest Java program. The class is named HelloWorld. The main method is the entry point. System.out.println prints text to the console followed by a newline."
+        },
+        {
+          "title": "Printing Multiple Lines",
+          "code": "public class MultiLine {\n    public static void main(String[] args) {\n        System.out.println(\"Welcome to Java!\");\n        System.out.println(\"This is lesson 1.\");\n        System.out.print(\"No newline here. \");\n        System.out.println(\"Back to println.\");\n    }\n}",
+          "explanation": "System.out.println adds a newline after printing. System.out.print does not. You can chain multiple print statements to build output line by line."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Write a Java program that prints your name, your age, and your favorite programming language on three separate lines.",
+          "hint": "Use System.out.println three times inside the main method."
+        },
+        {
+          "question": "What does JVM stand for and what is its role?",
+          "hint": "Think about what makes Java platform-independent."
+        }
+      ],
+      "mini_project": "",
+      "summary": "In this lesson you learned what Java is, why it is important, how the JVM enables platform independence, the difference between JDK, JRE, and JVM, and how to write a basic Hello World program. In the next lesson you will set up your Java development environment."
+    },
+    {
+      "lesson_number": 2,
+      "title": "Installing Java and Setup",
+      "explanation": "Before you can write and run Java programs on your computer, you need to install the right tools. In this lesson, we will walk through installing the Java Development Kit (JDK), setting up environment variables, and choosing a code editor or Integrated Development Environment (IDE).\n\nStep 1: Install the JDK\nThe JDK is the core toolkit for Java development. You need it to compile and run Java programs. Go to https://www.oracle.com/java/technologies/downloads/ and download the latest LTS (Long Term Support) version. As of 2024, Java 21 is the latest LTS. Alternatively, you can use OpenJDK from https://adoptium.net which is free and open source.\n\nFor Windows: Download the .exe installer and follow the setup wizard. For Mac: Download the .pkg file and run it. For Linux: Use your package manager, e.g., sudo apt install openjdk-21-jdk on Ubuntu.\n\nStep 2: Verify Installation\nAfter installing, open a terminal (Command Prompt on Windows, Terminal on Mac/Linux) and type: java -version. You should see output like: java version '21.0.1'. Also type: javac -version to confirm the compiler is installed.\n\nStep 3: Understanding PATH\nThe PATH environment variable tells your operating system where to find executable programs. When you type 'java' in a terminal, the OS searches your PATH for a program called 'java'. The JDK installer usually sets this automatically, but if 'java -version' doesn't work, you may need to add the JDK bin directory to your PATH manually.\n\nOn Windows: Search for 'Environment Variables' in the Start Menu, find PATH in System Variables, and add the path to your JDK bin folder (e.g., C:\\Program Files\\Java\\jdk-21\\bin).\n\nOn Mac/Linux: Add export PATH=$PATH:/path/to/jdk/bin to your ~/.bashrc or ~/.zshrc file.\n\nStep 4: Choose an IDE\nAn IDE makes coding much easier with features like autocomplete, error highlighting, and debugging. The most popular Java IDEs are:\n- IntelliJ IDEA (highly recommended, free Community Edition available)\n- Eclipse (free, widely used in enterprises)\n- VS Code with Java Extension Pack (lightweight option)\n\nFor beginners, IntelliJ IDEA Community Edition is the best choice. Download it from https://www.jetbrains.com/idea/.\n\nStep 5: Create Your First Project\nIn IntelliJ: File > New > Project > Java. Set the project name and location. Click Create. Then right-click on the src folder, New > Java Class, name it Main, and write your first program.\n\nStep 6: Compiling and Running from the Terminal\nEven if you use an IDE, understanding the command line is important. Save a file called HelloWorld.java, then:\n- Compile: javac HelloWorld.java (creates HelloWorld.class bytecode)\n- Run: java HelloWorld (executes the bytecode)\n\nThe file name must exactly match the class name, including capitalization.",
+      "sections": [
+        {
+          "heading": "Installing the JDK",
+          "content": "Download the JDK from Oracle or Adoptium. Choose the latest LTS version. Follow the installer for your operating system. The JDK includes javac (compiler) and java (runtime)."
+        },
+        {
+          "heading": "Verifying Your Installation",
+          "content": "Open a terminal and run 'java -version' and 'javac -version'. Both should return version numbers. If they do not, your PATH environment variable may need to be updated."
+        },
+        {
+          "heading": "Setting Up an IDE",
+          "content": "IntelliJ IDEA Community Edition is recommended for beginners. It provides smart code completion, real-time error detection, and easy project management. Download it free from JetBrains."
+        },
+        {
+          "heading": "Compiling and Running Java Programs",
+          "content": "Use 'javac FileName.java' to compile your source code into bytecode. Use 'java ClassName' to run it. The class name must match the file name exactly. IDEs handle this automatically with a Run button."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Compiling and Running from Terminal",
+          "code": "// Save this as: Main.java\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Java is set up correctly!\");\n    }\n}\n\n// In terminal:\n// javac Main.java\n// java Main\n// Output: Java is set up correctly!",
+          "explanation": "The javac command compiles Main.java into Main.class (bytecode). The java command runs Main.class using the JVM. The class name in the file must match the filename."
+        },
+        {
+          "title": "Checking Java Version in Code",
+          "code": "public class JavaVersion {\n    public static void main(String[] args) {\n        String version = System.getProperty(\"java.version\");\n        System.out.println(\"Running Java version: \" + version);\n    }\n}",
+          "explanation": "System.getProperty lets you read JVM properties at runtime. This shows you the exact version of Java your program is running on."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Install the JDK on your computer and verify it with 'java -version' in the terminal. What version is installed?",
+          "hint": "If the command is not found, your PATH may not be set correctly."
+        },
+        {
+          "question": "Create a file called MyFirstProgram.java, write a program that prints 'Setup complete!', compile it with javac, and run it with java.",
+          "hint": "Remember the file name must exactly match the class name including capitalization."
+        }
+      ],
+      "mini_project": "",
+      "summary": "In this lesson you installed the JDK, verified your setup, learned about the PATH variable, chose an IDE, and practiced compiling and running Java programs from the terminal. You are now ready to start writing real Java code in the next lesson."
+    },
+    {
+      "lesson_number": 3,
+      "title": "Variables and Data Types",
+      "explanation": "In programming, a variable is a container that holds data. Think of it like a labeled box where you can store a value and retrieve it later. In Java, every variable must be declared with a specific data type before it can be used. This is what makes Java a statically typed language.\n\nDeclaring a Variable\nThe syntax for declaring a variable in Java is: dataType variableName = value;\nFor example: int age = 25;\nHere, 'int' is the data type, 'age' is the variable name, and 25 is the initial value.\n\nPrimitive Data Types\nJava has 8 primitive data types. These are the most basic types built directly into the language:\n\n1. byte: Stores whole numbers from -128 to 127. Uses 1 byte of memory. Example: byte b = 100;\n2. short: Stores whole numbers from -32,768 to 32,767. Uses 2 bytes. Example: short s = 5000;\n3. int: Stores whole numbers from about -2 billion to 2 billion. Uses 4 bytes. This is the most commonly used integer type. Example: int count = 42;\n4. long: Stores very large whole numbers. Uses 8 bytes. Add 'L' suffix to literals. Example: long bigNumber = 9999999999L;\n5. float: Stores decimal numbers with about 6-7 decimal digits of precision. Uses 4 bytes. Add 'f' suffix. Example: float price = 9.99f;\n6. double: Stores decimal numbers with about 15 decimal digits of precision. Uses 8 bytes. This is the default for decimals. Example: double pi = 3.14159265358979;\n7. boolean: Stores true or false. Uses 1 bit effectively. Example: boolean isJavaFun = true;\n8. char: Stores a single character (letter, digit, symbol). Uses 2 bytes. Use single quotes. Example: char grade = 'A';\n\nReference Types\nBeyond primitives, Java has reference types. The most important beginner reference type is String. A String stores a sequence of characters (text). Example: String name = \"Alice\";\nStrings use double quotes. We will cover Strings in depth in Lesson 9.\n\nNaming Conventions\nJava variable names should follow camelCase: start with a lowercase letter, and capitalize the first letter of each subsequent word. Examples: firstName, totalAmount, isUserLoggedIn.\nVariable names cannot start with a number, cannot contain spaces, and cannot be Java reserved words (like int, class, public).\n\nConstants\nIf you want a variable whose value should never change, use the 'final' keyword: final double TAX_RATE = 0.08;\nConstants are typically named in ALL_CAPS_WITH_UNDERSCORES.\n\nType Casting\nSometimes you need to convert between types. Widening casting (smaller to larger) is automatic: int x = 5; double y = x; (works fine). Narrowing casting (larger to smaller) requires explicit cast: double d = 9.7; int i = (int) d; (i becomes 9, decimal part is lost).",
+      "sections": [
+        {
+          "heading": "Primitive Data Types",
+          "content": "Java has 8 primitive types: byte, short, int, long, float, double, boolean, and char. Each has a fixed size and range. int and double are used most often for numbers, boolean for true/false logic, and char for single characters."
+        },
+        {
+          "heading": "Declaring and Initializing Variables",
+          "content": "Declare a variable with: dataType name = value; You must declare the type before using the variable. Variables can be declared without a value (e.g., int x;) but must be assigned before use."
+        },
+        {
+          "heading": "String: A Reference Type",
+          "content": "String is not a primitive — it is a class. Strings hold sequences of characters enclosed in double quotes. Example: String city = \"Paris\"; Java provides many built-in methods to work with Strings."
+        },
+        {
+          "heading": "Constants and Type Casting",
+          "content": "Use 'final' to declare constants that cannot change. Type casting allows conversion between numeric types. Widening (int to double) is automatic. Narrowing (double to int) requires an explicit cast and may lose precision."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Declaring All Primitive Types",
+          "code": "public class DataTypes {\n    public static void main(String[] args) {\n        byte age = 25;\n        short year = 2024;\n        int population = 1000000;\n        long distanceToSun = 149600000L;\n        float temperature = 36.6f;\n        double pi = 3.14159265358979;\n        boolean isJavaFun = true;\n        char initial = 'J';\n\n        System.out.println(\"Age: \" + age);\n        System.out.println(\"Year: \" + year);\n        System.out.println(\"Population: \" + population);\n        System.out.println(\"Distance to Sun: \" + distanceToSun);\n        System.out.println(\"Temperature: \" + temperature);\n        System.out.println(\"Pi: \" + pi);\n        System.out.println(\"Is Java fun? \" + isJavaFun);\n        System.out.println(\"Initial: \" + initial);\n    }\n}",
+          "explanation": "This program declares one variable of each primitive type and prints them. Notice the L suffix for long and f suffix for float literals."
+        },
+        {
+          "title": "Type Casting Example",
+          "code": "public class TypeCasting {\n    public static void main(String[] args) {\n        // Widening: int to double (automatic)\n        int intValue = 42;\n        double doubleValue = intValue;\n        System.out.println(\"Widened: \" + doubleValue); // 42.0\n\n        // Narrowing: double to int (explicit cast)\n        double price = 19.99;\n        int roundedPrice = (int) price;\n        System.out.println(\"Narrowed: \" + roundedPrice); // 19 (decimal lost)\n\n        // Constant\n        final double TAX_RATE = 0.08;\n        System.out.println(\"Tax rate: \" + TAX_RATE);\n    }\n}",
+          "explanation": "Widening conversion from int to double is safe and automatic. Narrowing from double to int truncates the decimal (does NOT round). Constants declared with 'final' cannot be reassigned."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Create variables to store: your name (String), your age (int), your height in meters (double), and whether you are a student (boolean). Print all four values.",
+          "hint": "Use System.out.println with the + operator to concatenate labels with values."
+        },
+        {
+          "question": "Declare a double variable with value 7.85 and cast it to an int. Print both values. What do you notice about the result?",
+          "hint": "Casting truncates, it does not round."
+        }
+      ],
+      "mini_project": "",
+      "summary": "In this lesson you learned about Java's 8 primitive data types, how to declare and initialize variables, the difference between primitives and reference types, naming conventions, constants with final, and type casting. In the next lesson you will learn how to perform operations on these variables."
+    },
+    {
+      "lesson_number": 4,
+      "title": "Operators",
+      "explanation": "Operators are symbols that tell Java to perform specific operations on values and variables. Think of them like the symbols in math — plus, minus, multiply, divide. Java has several categories of operators, and in this lesson we will cover all the essential ones.\n\nArithmetic Operators\nThese are used to perform basic math:\n+ (addition): 5 + 3 = 8\n- (subtraction): 10 - 4 = 6\n* (multiplication): 6 * 7 = 42\n/ (division): 15 / 4 = 3 (integer division, truncates decimal)\n% (modulus): 15 % 4 = 3 (remainder after division)\n\nImportant: When dividing two integers, Java does integer division. 7 / 2 = 3, not 3.5. To get decimal division, at least one operand must be a double: 7.0 / 2 = 3.5.\n\nAssignment Operators\nThe basic assignment operator is =. There are also compound assignment operators that combine an arithmetic operation with assignment:\n+= : x += 5 is the same as x = x + 5\n-= : x -= 3 is the same as x = x - 3\n*= : x *= 2 is the same as x = x * 2\n/= : x /= 4 is the same as x = x / 4\n%= : x %= 3 is the same as x = x % 3\n\nIncrement and Decrement Operators\n++ increases a value by 1. -- decreases a value by 1.\nThere are two forms:\n- Pre-increment (++x): increments first, then uses the value\n- Post-increment (x++): uses the value first, then increments\nExample: int x = 5; int y = x++; // y=5, x=6\nExample: int x = 5; int y = ++x; // y=6, x=6\n\nComparison (Relational) Operators\nThese compare two values and return a boolean (true or false):\n== (equal to): 5 == 5 is true\n!= (not equal to): 5 != 3 is true\n> (greater than): 7 > 3 is true\n< (less than): 3 < 7 is true\n>= (greater than or equal): 5 >= 5 is true\n<= (less than or equal): 4 <= 6 is true\n\nLogical Operators\nUsed to combine boolean expressions:\n&& (AND): true && true = true; true && false = false\n|| (OR): true || false = true; false || false = false\n! (NOT): !true = false; !false = true\n\nOperator Precedence\nJava follows mathematical order of operations. Parentheses > Unary (++, --) > Multiplicative (*, /, %) > Additive (+, -) > Comparison > Logical AND > Logical OR. When in doubt, use parentheses to make your intent clear.",
+      "sections": [
+        {
+          "heading": "Arithmetic Operators",
+          "content": "Java supports +, -, *, /, and % for basic math. Integer division truncates the decimal. Use % (modulus) to get the remainder. To get floating-point results from division, ensure at least one operand is a double."
+        },
+        {
+          "heading": "Assignment and Compound Assignment",
+          "content": "The = operator assigns a value. Compound operators like +=, -=, *=, /= combine math and assignment in one step. They are shorthand and make code more concise."
+        },
+        {
+          "heading": "Comparison Operators",
+          "content": "Comparison operators (==, !=, >, <, >=, <=) compare two values and return a boolean. They are essential for making decisions in if statements and loops."
+        },
+        {
+          "heading": "Logical Operators",
+          "content": "Logical operators (&&, ||, !) combine or negate boolean expressions. && requires both sides to be true. || requires at least one side to be true. ! reverses a boolean value."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Arithmetic Operations",
+          "code": "public class Arithmetic {\n    public static void main(String[] args) {\n        int a = 17;\n        int b = 5;\n\n        System.out.println(\"a + b = \" + (a + b));  // 22\n        System.out.println(\"a - b = \" + (a - b));  // 12\n        System.out.println(\"a * b = \" + (a * b));  // 85\n        System.out.println(\"a / b = \" + (a / b));  // 3 (integer division)\n        System.out.println(\"a % b = \" + (a % b));  // 2 (remainder)\n\n        // Float division\n        double result = (double) a / b;\n        System.out.println(\"Float division: \" + result); // 3.4\n    }\n}",
+          "explanation": "17/5 in integer division is 3 (not 3.4). The remainder is 2 (17 = 5*3 + 2). Casting 'a' to double forces floating-point division giving 3.4."
+        },
+        {
+          "title": "Logical and Comparison Operators",
+          "code": "public class LogicDemo {\n    public static void main(String[] args) {\n        int age = 20;\n        boolean hasID = true;\n\n        // Comparison\n        System.out.println(\"Is adult: \" + (age >= 18));         // true\n        System.out.println(\"Is not 30: \" + (age != 30));        // true\n\n        // Logical\n        boolean canEnter = (age >= 18) && hasID;\n        System.out.println(\"Can enter: \" + canEnter);           // true\n\n        boolean needsCheck = (age < 18) || !hasID;\n        System.out.println(\"Needs check: \" + needsCheck);       // false\n    }\n}",
+          "explanation": "Both conditions must be true for && to return true. Either condition being true is enough for || to return true. The ! operator inverts a boolean value."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Write a program that takes two integers (hardcoded), and prints the result of all five arithmetic operations on them. Also check if their sum is even using the modulus operator.",
+          "hint": "A number is even if number % 2 == 0."
+        },
+        {
+          "question": "Declare a variable x = 10. Apply +=5, then -=3, then *=2. Print x after each operation.",
+          "hint": "Compound assignment modifies and reassigns the variable in one step."
+        }
+      ],
+      "mini_project": "",
+      "summary": "In this lesson you learned about arithmetic, assignment, comparison, and logical operators in Java. You also learned about operator precedence and the difference between integer and floating-point division. These operators form the backbone of all computations and decisions in your programs."
+    },
+    {
+      "lesson_number": 5,
+      "title": "Conditional Statements",
+      "explanation": "Programs need to make decisions. Should we show a welcome message? Is the user old enough to access this content? Did the user enter the correct password? Conditional statements allow your program to execute different blocks of code depending on whether certain conditions are true or false.\n\nThe if Statement\nThe simplest conditional is the if statement. It executes a block of code only if its condition is true:\nif (condition) {\n    // code runs if condition is true\n}\n\nThe if-else Statement\nUse if-else when you want to execute one block of code if the condition is true and a different block if it is false:\nif (condition) {\n    // runs if true\n} else {\n    // runs if false\n}\n\nThe if-else if-else Chain\nWhen you have multiple conditions to check, chain them:\nif (condition1) {\n    // runs if condition1 is true\n} else if (condition2) {\n    // runs if condition1 is false AND condition2 is true\n} else if (condition3) {\n    // runs if conditions 1 and 2 are false AND condition3 is true\n} else {\n    // runs if all conditions are false\n}\nJava checks each condition in order and executes the first one that is true. Once a match is found, it skips the rest.\n\nNested if Statements\nYou can place if statements inside other if statements. This is called nesting. Use it when you need to check secondary conditions after a primary condition is met:\nif (isLoggedIn) {\n    if (isAdmin) {\n        System.out.println(\"Welcome, Admin!\");\n    } else {\n        System.out.println(\"Welcome, User!\");\n    }\n}\n\nThe switch Statement\nWhen you need to compare a single variable against many possible values, switch is cleaner than a long if-else chain:\nswitch (variable) {\n    case value1:\n        // code\n        break;\n    case value2:\n        // code\n        break;\n    default:\n        // runs if no case matches\n}\nThe break keyword is crucial — without it, execution 'falls through' to the next case. The default case is optional but recommended.\n\nThe Ternary Operator\nFor simple if-else assignments, Java has a shorthand called the ternary operator:\nresult = (condition) ? valueIfTrue : valueIfFalse;\nExample: String status = (age >= 18) ? \"adult\" : \"minor\";\nThis is concise but use it only for simple cases — complex ternary operators reduce readability.",
+      "sections": [
+        {
+          "heading": "if and if-else Statements",
+          "content": "The if statement executes code only when its condition is true. The if-else statement handles both the true and false cases. Always use curly braces {} even for single-line bodies to avoid bugs."
+        },
+        {
+          "heading": "if-else if Chains",
+          "content": "Chain multiple conditions with else if. Java evaluates conditions top to bottom and executes the first matching block. The final else is a catch-all for when no conditions match."
+        },
+        {
+          "heading": "The switch Statement",
+          "content": "switch is ideal when comparing one variable against multiple specific values. Each case ends with a break to prevent fall-through. The default case handles unmatched values. switch works with int, char, String, and enum types."
+        },
+        {
+          "heading": "The Ternary Operator",
+          "content": "The ternary operator is a compact if-else: condition ? trueValue : falseValue. It is useful for assigning a value based on a simple condition. Avoid nesting ternary operators as it hurts readability."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Grade Calculator",
+          "code": "public class GradeCalc {\n    public static void main(String[] args) {\n        int score = 78;\n\n        if (score >= 90) {\n            System.out.println(\"Grade: A\");\n        } else if (score >= 80) {\n            System.out.println(\"Grade: B\");\n        } else if (score >= 70) {\n            System.out.println(\"Grade: C\");\n        } else if (score >= 60) {\n            System.out.println(\"Grade: D\");\n        } else {\n            System.out.println(\"Grade: F\");\n        }\n    }\n}",
+          "explanation": "The program checks the score against each threshold from highest to lowest. When score=78, the first two conditions fail, but score >= 70 is true, so 'Grade: C' is printed and the rest are skipped."
+        },
+        {
+          "title": "Day Name with switch",
+          "code": "public class DayName {\n    public static void main(String[] args) {\n        int day = 3;\n        String dayName;\n\n        switch (day) {\n            case 1:\n                dayName = \"Monday\";\n                break;\n            case 2:\n                dayName = \"Tuesday\";\n                break;\n            case 3:\n                dayName = \"Wednesday\";\n                break;\n            case 4:\n                dayName = \"Thursday\";\n                break;\n            case 5:\n                dayName = \"Friday\";\n                break;\n            default:\n                dayName = \"Weekend\";\n        }\n\n        System.out.println(\"Day: \" + dayName); // Wednesday\n    }\n}",
+          "explanation": "The switch matches day=3 to case 3 and sets dayName to Wednesday. The break prevents fall-through to case 4. The default handles values not listed (6 and 7 for weekend)."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Write a program that takes an integer 'temperature' (hardcoded). Print 'Cold' if below 10, 'Warm' if 10-25, 'Hot' if above 25.",
+          "hint": "Use an if-else if-else chain with comparison operators."
+        },
+        {
+          "question": "Use the ternary operator to check if a number is positive or negative and assign the result to a String variable, then print it.",
+          "hint": "String result = (number > 0) ? \"positive\" : \"negative\";"
+        }
+      ],
+      "mini_project": "Mini Project: Simple Calculator\nCreate a program with two hardcoded numbers and a char variable 'operator' set to '+', '-', '*', or '/'. Use a switch statement to perform the correct operation and print the result. Handle division by zero with an extra if check.",
+      "summary": "You learned how to control program flow using if, if-else, if-else if chains, switch statements, and the ternary operator. Conditional logic is the foundation of decision-making in code and is used in almost every program you will ever write."
+    },
+    {
+      "lesson_number": 6,
+      "title": "Loops",
+      "explanation": "Loops allow your program to execute a block of code repeatedly. Instead of writing the same code 100 times, you write it once and let a loop run it 100 times. Java has three main loop types: for, while, and do-while.\n\nThe for Loop\nThe for loop is ideal when you know in advance how many times you want to loop. Its structure is:\nfor (initialization; condition; update) {\n    // loop body\n}\n- Initialization: runs once before the loop starts (e.g., int i = 0)\n- Condition: checked before each iteration; loop continues while true\n- Update: runs after each iteration (e.g., i++)\n\nExample: for (int i = 1; i <= 5; i++) { System.out.println(i); }\nThis prints 1, 2, 3, 4, 5.\n\nThe while Loop\nThe while loop is ideal when you do not know in advance how many times you need to loop. It checks the condition before each iteration:\nwhile (condition) {\n    // loop body\n}\nIf the condition is false from the start, the loop body never executes.\n\nThe do-while Loop\nThe do-while loop is like while, but it always runs the loop body at least once because the condition is checked after the body:\ndo {\n    // loop body\n} while (condition);\nThis is useful when you want to run some code at least once regardless of the condition (e.g., displaying a menu).\n\nNested Loops\nYou can put a loop inside another loop. The inner loop completes all its iterations for each iteration of the outer loop. This is useful for working with 2D data or printing patterns.\n\nBreak and Continue\nbreak: immediately exits the loop regardless of the condition\ncontinue: skips the rest of the current iteration and moves to the next one\n\nFor-each Loop (Enhanced for)\nJava also has an enhanced for loop for iterating over arrays and collections:\nfor (dataType element : array) {\n    // use element\n}\nWe will use this more in the Arrays lesson.\n\nCommon Loop Pitfalls\n1. Infinite loops: if the condition never becomes false (e.g., you forget i++), the loop runs forever. Always ensure the loop condition will eventually become false.\n2. Off-by-one errors: starting at 0 vs 1, using < vs <=. Be precise about your loop bounds.\n3. Modifying loop variable inside body: avoid changing i inside the for loop body as it leads to confusing behavior.",
+      "sections": [
+        {
+          "heading": "The for Loop",
+          "content": "Use for loops when you know the number of iterations. The loop has three parts: initialization (runs once), condition (checked each iteration), and update (runs after each iteration). It is the most commonly used loop in Java."
+        },
+        {
+          "heading": "The while Loop",
+          "content": "Use while loops when the number of iterations is unknown and depends on runtime conditions. The condition is checked before each iteration. If it starts false, the body never runs."
+        },
+        {
+          "heading": "The do-while Loop",
+          "content": "The do-while loop guarantees the body runs at least once because the condition is checked after the body. It is less common but useful for menus and input validation scenarios."
+        },
+        {
+          "heading": "break, continue, and Nested Loops",
+          "content": "break exits the loop immediately. continue skips to the next iteration. Nested loops run the inner loop completely for each outer iteration. Use nested loops for patterns and multi-dimensional data."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Counting with for and while",
+          "code": "public class LoopDemo {\n    public static void main(String[] args) {\n        // for loop: print 1 to 5\n        System.out.println(\"For loop:\");\n        for (int i = 1; i <= 5; i++) {\n            System.out.print(i + \" \");\n        }\n        System.out.println();\n\n        // while loop: countdown\n        System.out.println(\"While countdown:\");\n        int count = 5;\n        while (count > 0) {\n            System.out.print(count + \" \");\n            count--;\n        }\n        System.out.println();\n\n        // do-while: runs at least once\n        System.out.println(\"Do-while:\");\n        int x = 0;\n        do {\n            System.out.println(\"x = \" + x);\n            x++;\n        } while (x < 3);\n    }\n}",
+          "explanation": "The for loop goes from 1 to 5 inclusive. The while loop counts down from 5 to 1. The do-while runs even if x starts at 0."
+        },
+        {
+          "title": "Multiplication Table with Nested Loops",
+          "code": "public class MultiTable {\n    public static void main(String[] args) {\n        for (int i = 1; i <= 5; i++) {\n            for (int j = 1; j <= 5; j++) {\n                System.out.printf(\"%4d\", i * j);\n            }\n            System.out.println();\n        }\n    }\n}",
+          "explanation": "The outer loop goes through rows (1-5), the inner loop through columns (1-5). printf with %4d formats each number in a 4-character wide field for neat alignment."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Write a program using a for loop that prints the sum of all numbers from 1 to 100.",
+          "hint": "Declare a sum variable before the loop and add each i to it inside the loop."
+        },
+        {
+          "question": "Write a while loop that keeps doubling a number starting from 1 until it exceeds 1000. Print each value.",
+          "hint": "Start with int n = 1; and use n *= 2 in the loop body."
+        }
+      ],
+      "mini_project": "",
+      "summary": "You learned about for, while, and do-while loops. You also learned about break, continue, nested loops, and the enhanced for-each loop. Loops are essential for processing collections of data, repeating tasks, and building algorithms. In the next lesson, you will learn how to organize code into reusable methods."
+    },
+    {
+      "lesson_number": 7,
+      "title": "Methods",
+      "explanation": "A method is a reusable block of code that performs a specific task. Instead of repeating the same code in multiple places, you write it once as a method and call it whenever you need it. Methods are the primary tool for organizing and reusing code in Java.\n\nDefining a Method\nA method definition has this structure:\naccessModifier returnType methodName(parameters) {\n    // method body\n    return value; // if returnType is not void\n}\n\nExample:\npublic static int add(int a, int b) {\n    return a + b;\n}\n\nBreaking this down:\n- public: the method is accessible from anywhere\n- static: the method belongs to the class, not an instance (we will explain more in OOP lessons)\n- int: the return type (this method returns an integer)\n- add: the method name\n- (int a, int b): parameters — values the method receives when called\n- return a + b: the value returned to the caller\n\nCalling a Method\nTo use a method, you call it by name and pass the required arguments:\nint result = add(5, 3); // result = 8\n\nvoid Methods\nIf a method does not return a value, its return type is 'void'. void methods perform an action but do not produce a result to use:\npublic static void greet(String name) {\n    System.out.println(\"Hello, \" + name + \"!\");\n}\ngreet(\"Alice\"); // Prints: Hello, Alice!\n\nMethod Parameters and Arguments\nParameters are variables listed in the method definition. Arguments are the actual values passed when calling the method. Java passes primitives by value (a copy), so changes inside the method do not affect the original variable.\n\nMethod Overloading\nJava allows multiple methods with the same name as long as they have different parameter lists (different number or types of parameters). This is called overloading:\npublic static int add(int a, int b) { return a + b; }\npublic static double add(double a, double b) { return a + b; }\npublic static int add(int a, int b, int c) { return a + b + c; }\nJava picks the correct version based on the argument types and count.\n\nVariable Scope\nVariables declared inside a method are local variables — they only exist within that method and cannot be accessed from outside. This is called scope. Parameters are also local to the method.\n\nRecursion (Introduction)\nA method can call itself — this is called recursion. It needs a base case (a condition to stop) and a recursive case (the call to itself with a simpler input). Classic example: factorial. factorial(5) = 5 * factorial(4) = 5 * 4 * 3 * 2 * 1 = 120.",
+      "sections": [
+        {
+          "heading": "Defining and Calling Methods",
+          "content": "A method is defined with an access modifier, return type, name, and parameters. You call a method by writing its name followed by arguments in parentheses. Methods make code reusable, readable, and easier to maintain."
+        },
+        {
+          "heading": "Return Types and void",
+          "content": "Methods can return a value using the return keyword. The return type in the signature must match the returned value's type. If no value is returned, use void as the return type. A void method can still use return; to exit early."
+        },
+        {
+          "heading": "Method Overloading",
+          "content": "Java allows multiple methods with the same name but different parameter types or counts. The compiler picks the right version based on the arguments passed. Overloading improves code readability without needing different names for similar operations."
+        },
+        {
+          "heading": "Scope and Recursion",
+          "content": "Local variables exist only within the method that declares them. Recursion is when a method calls itself. Every recursive method needs a base case to prevent infinite recursion. Recursion is elegant for problems that break into smaller identical sub-problems."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Reusable Methods",
+          "code": "public class MethodDemo {\n\n    public static int add(int a, int b) {\n        return a + b;\n    }\n\n    public static double circleArea(double radius) {\n        return Math.PI * radius * radius;\n    }\n\n    public static void printSeparator() {\n        System.out.println(\"-------------------\");\n    }\n\n    public static void main(String[] args) {\n        System.out.println(\"Sum: \" + add(10, 25));\n        printSeparator();\n        System.out.printf(\"Area: %.2f%n\", circleArea(5.0));\n        printSeparator();\n        System.out.println(\"Sum again: \" + add(100, 200));\n    }\n}",
+          "explanation": "add() returns the sum of two ints. circleArea() returns the area using Math.PI. printSeparator() is void — it just prints a line. All methods are reused by calling them from main()."
+        },
+        {
+          "title": "Recursive Factorial",
+          "code": "public class Factorial {\n\n    public static long factorial(int n) {\n        if (n <= 1) {\n            return 1; // base case\n        }\n        return n * factorial(n - 1); // recursive case\n    }\n\n    public static void main(String[] args) {\n        for (int i = 0; i <= 10; i++) {\n            System.out.println(i + \"! = \" + factorial(i));\n        }\n    }\n}",
+          "explanation": "factorial(5) calls factorial(4), which calls factorial(3) and so on until factorial(1) returns 1. Then the chain unwinds multiplying the values. The base case n <= 1 stops the recursion."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Write a method called 'isEven' that takes an int and returns true if it is even and false if it is odd. Call it in main() with several numbers.",
+          "hint": "Use the modulus operator: number % 2 == 0 means even."
+        },
+        {
+          "question": "Write an overloaded method called 'max' with two versions: one that takes two ints and one that takes three ints, both returning the maximum value.",
+          "hint": "For three ints, you can use Math.max(a, Math.max(b, c)) or use comparisons."
+        }
+      ],
+      "mini_project": "Mini Project: Unit Converter\nCreate a program with methods to convert: Celsius to Fahrenheit (formula: F = C * 9/5 + 32), kilometers to miles (formula: miles = km * 0.621371), and kilograms to pounds (formula: lbs = kg * 2.20462). Call each method with sample values and print formatted results.",
+      "summary": "You learned how to define and call methods, use return types, write void methods, overload methods, understand variable scope, and an introduction to recursion. Methods are fundamental to writing organized, reusable code."
+    },
+    {
+      "lesson_number": 8,
+      "title": "Arrays",
+      "explanation": "An array is a data structure that stores multiple values of the same type in a single variable. Instead of declaring 100 separate variables, you can use one array that holds 100 values. Arrays are the most basic collection type in Java.\n\nDeclaring and Creating Arrays\nThere are two steps to creating an array in Java:\n1. Declare: dataType[] arrayName;\n2. Instantiate: arrayName = new dataType[size];\nOr combine them: int[] numbers = new int[5];\nThis creates an array of 5 integers. By default, integer arrays are initialized to 0, boolean arrays to false, and object arrays to null.\n\nArray Initialization with Values\nYou can declare and fill an array in one step:\nint[] scores = {95, 87, 76, 91, 83};\nThis creates an array of 5 ints with the given values.\n\nAccessing Array Elements\nUse the index (position) to access elements. Java arrays are zero-indexed: the first element is at index 0, the last at index length-1.\nscores[0] = 95; // first element\nscores[4] = 83; // last element\n\nArray Length\nUse arrayName.length to get the number of elements:\nSystem.out.println(scores.length); // 5\nNote: length is a property (no parentheses), not a method.\n\nIterating Over Arrays\nThe most common way to process arrays is with a for loop:\nfor (int i = 0; i < scores.length; i++) {\n    System.out.println(scores[i]);\n}\nOr use the enhanced for-each loop:\nfor (int score : scores) {\n    System.out.println(score);\n}\nUse for-each when you only need to read values. Use the regular for loop when you need the index or want to modify elements.\n\nMultidimensional Arrays\nJava supports arrays of arrays (2D arrays):\nint[][] matrix = new int[3][4]; // 3 rows, 4 columns\nint[][] grid = {{1,2,3},{4,5,6},{7,8,9}};\nAccess with two indices: grid[row][col]. Use nested loops to process them.\n\nCommon Array Operations\n- Find maximum/minimum: iterate and track the largest/smallest seen\n- Calculate sum/average: iterate and accumulate\n- Search for an element: linear search (iterate checking each element)\n- Sort: Java provides Arrays.sort(array) in java.util.Arrays\n\nArrayIndexOutOfBoundsException\nAccessing an index that does not exist (negative or >= length) throws this exception. Always check bounds when using dynamic indices.",
+      "sections": [
+        {
+          "heading": "Creating and Accessing Arrays",
+          "content": "Arrays are declared with a type and size. Elements are accessed using zero-based indices. The length property gives the number of elements. Accessing invalid indices causes ArrayIndexOutOfBoundsException."
+        },
+        {
+          "heading": "Iterating Arrays",
+          "content": "Use a regular for loop when you need index access or want to modify elements. Use the enhanced for-each loop for cleaner syntax when you only need to read. Both loops are valid approaches."
+        },
+        {
+          "heading": "2D Arrays",
+          "content": "A 2D array is an array of arrays, useful for grids, matrices, and tables. Declare with two sets of brackets: int[][] grid. Access elements with two indices: grid[row][col]. Use nested for loops to process all elements."
+        },
+        {
+          "heading": "Useful Array Methods",
+          "content": "The java.util.Arrays class provides helpful utilities: Arrays.sort() sorts in ascending order, Arrays.toString() converts to a readable string, Arrays.fill() fills with a value, Arrays.copyOf() creates a copy. Import with: import java.util.Arrays;"
+        }
+      ],
+      "examples": [
+        {
+          "title": "Array Operations",
+          "code": "import java.util.Arrays;\n\npublic class ArrayDemo {\n    public static void main(String[] args) {\n        int[] numbers = {64, 25, 12, 90, 43};\n\n        // Print original\n        System.out.println(\"Original: \" + Arrays.toString(numbers));\n\n        // Find max\n        int max = numbers[0];\n        for (int n : numbers) {\n            if (n > max) max = n;\n        }\n        System.out.println(\"Max: \" + max);\n\n        // Calculate average\n        int sum = 0;\n        for (int n : numbers) {\n            sum += n;\n        }\n        double avg = (double) sum / numbers.length;\n        System.out.printf(\"Average: %.2f%n\", avg);\n\n        // Sort\n        Arrays.sort(numbers);\n        System.out.println(\"Sorted: \" + Arrays.toString(numbers));\n    }\n}",
+          "explanation": "We find the max by iterating and comparing each element. Sum is accumulated in a loop and divided by length for average. Arrays.sort() sorts in-place and Arrays.toString() gives a readable format."
+        },
+        {
+          "title": "2D Array - Grid",
+          "code": "public class Grid {\n    public static void main(String[] args) {\n        int[][] matrix = {\n            {1, 2, 3},\n            {4, 5, 6},\n            {7, 8, 9}\n        };\n\n        System.out.println(\"Matrix:\");\n        for (int row = 0; row < matrix.length; row++) {\n            for (int col = 0; col < matrix[row].length; col++) {\n                System.out.printf(\"%3d\", matrix[row][col]);\n            }\n            System.out.println();\n        }\n    }\n}",
+          "explanation": "The outer loop iterates rows, inner loop iterates columns. matrix.length is the number of rows. matrix[row].length is the number of columns in that row. printf formats each number with width 3."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Create an array of 7 integers representing daily temperatures. Calculate and print the average temperature and the hottest day (index and value).",
+          "hint": "Track both the maximum value and its index using a regular for loop."
+        },
+        {
+          "question": "Create a 3x3 int array and fill it with values. Calculate the sum of the main diagonal (top-left to bottom-right, where row == col).",
+          "hint": "The main diagonal elements are at positions [0][0], [1][1], [2][2]."
+        }
+      ],
+      "mini_project": "",
+      "summary": "You learned how to declare, create, initialize, and iterate over arrays. You practiced common operations like finding max/min, calculating averages, and sorting. You also learned about 2D arrays and the Arrays utility class. Arrays are the foundation for understanding collections, which comes later in the course."
+    },
+    {
+      "lesson_number": 9,
+      "title": "Strings",
+      "explanation": "Strings are one of the most commonly used data types in Java. A String is a sequence of characters — like words, sentences, or any text. In Java, String is a class (not a primitive), which means it comes with many powerful built-in methods for manipulating text.\n\nCreating Strings\nStrings can be created in two ways:\n1. String literal: String name = \"Alice\"; (stored in String pool)\n2. Using new: String name = new String(\"Alice\"); (creates a new object)\nAlways prefer string literals — they are more memory-efficient.\n\nString Immutability\nStrings in Java are immutable, meaning once created they cannot be changed. When you seem to modify a String (e.g., str = str + \" world\"), you are actually creating a new String object, not modifying the original. This has performance implications for heavy string manipulation.\n\nCommon String Methods\nJava's String class has dozens of useful methods:\n- length(): returns the number of characters\n- charAt(index): returns the character at the given index\n- indexOf(str): returns the index of the first occurrence of a substring\n- substring(start): returns from start to end\n- substring(start, end): returns characters from start to end-1\n- toUpperCase() / toLowerCase(): converts case\n- trim(): removes leading and trailing whitespace\n- replace(old, new): replaces all occurrences\n- contains(str): returns true if string contains substring\n- startsWith(str) / endsWith(str): checks prefix/suffix\n- split(delimiter): splits into an array of strings\n- equals(str): compares content (use this, not ==)\n- equalsIgnoreCase(str): case-insensitive comparison\n- isEmpty(): returns true if length is 0\n- isBlank(): returns true if empty or only whitespace (Java 11+)\n\nString Comparison: equals() vs ==\nCritically important: use equals() to compare String content, never ==.\n== compares references (memory address), not content.\n\"hello\" == \"hello\" might be true due to string pooling, but\nnew String(\"hello\") == new String(\"hello\") is always false.\nAlways use: str1.equals(str2) or str1.equalsIgnoreCase(str2)\n\nString Concatenation\nUse + to concatenate strings. You can also concatenate non-strings — Java automatically converts them.\nFor heavy string building in loops, use StringBuilder instead of + for performance.\n\nStringBuilder\nStringBuilder is a mutable (changeable) sequence of characters. Use it when building strings in loops:\nStringBuilder sb = new StringBuilder();\nsb.append(\"Hello\");\nsb.append(\" World\");\nString result = sb.toString(); // \"Hello World\"\n\nString Formatting\nUse String.format() or printf() to create formatted strings:\nString.format(\"Name: %s, Age: %d, GPA: %.2f\", name, age, gpa)",
+      "sections": [
+        {
+          "heading": "Creating Strings and Immutability",
+          "content": "String literals are preferred over using new String(). Strings are immutable — they cannot be changed after creation. Operations that appear to modify a String actually create a new one. Use StringBuilder for efficient mutable string building."
+        },
+        {
+          "heading": "Essential String Methods",
+          "content": "String provides methods for length, character access, searching, substring extraction, case conversion, trimming, replacement, and splitting. These cover the vast majority of real-world string manipulation needs."
+        },
+        {
+          "heading": "Comparing Strings Correctly",
+          "content": "Always use .equals() to compare String content, never ==. The == operator checks if two variables point to the same object in memory, not whether they contain the same text. equalsIgnoreCase() is handy for case-insensitive comparisons."
+        },
+        {
+          "heading": "StringBuilder for Efficient Concatenation",
+          "content": "Using + in a loop creates many temporary String objects and is slow. StringBuilder builds strings efficiently by modifying a buffer. Call append() to add text and toString() to get the final String."
+        }
+      ],
+      "examples": [
+        {
+          "title": "String Methods in Action",
+          "code": "public class StringDemo {\n    public static void main(String[] args) {\n        String sentence = \"  Hello, Java World!  \";\n\n        System.out.println(\"Original: '\" + sentence + \"'\");\n        System.out.println(\"Trimmed: '\" + sentence.trim() + \"'\");\n        System.out.println(\"Length: \" + sentence.trim().length());\n        System.out.println(\"Uppercase: \" + sentence.trim().toUpperCase());\n        System.out.println(\"Index of 'Java': \" + sentence.indexOf(\"Java\"));\n        System.out.println(\"Substring: \" + sentence.trim().substring(7, 11));\n        System.out.println(\"Replace: \" + sentence.trim().replace(\"World\", \"Universe\"));\n        System.out.println(\"Contains 'Java': \" + sentence.contains(\"Java\"));\n\n        String[] words = sentence.trim().split(\", \");\n        for (String word : words) {\n            System.out.println(\"Word: \" + word);\n        }\n    }\n}",
+          "explanation": "trim() removes whitespace from both ends. substring(7,11) extracts characters at indices 7,8,9,10. split() divides the string by the delimiter and returns an array."
+        },
+        {
+          "title": "StringBuilder vs Concatenation",
+          "code": "public class StringBuilderDemo {\n    public static void main(String[] args) {\n        // Inefficient in loops (creates many objects)\n        String result = \"\";\n        for (int i = 1; i <= 5; i++) {\n            result += \"Item\" + i + \" \";\n        }\n        System.out.println(result);\n\n        // Efficient with StringBuilder\n        StringBuilder sb = new StringBuilder();\n        for (int i = 1; i <= 5; i++) {\n            sb.append(\"Item\").append(i).append(\" \");\n        }\n        System.out.println(sb.toString());\n    }\n}",
+          "explanation": "Both produce the same output, but StringBuilder is far more efficient in loops because it modifies a buffer rather than creating a new String object every iteration."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Write a method that takes a String sentence and returns the number of vowels (a, e, i, o, u) in it, case-insensitive.",
+          "hint": "Convert to lowercase, iterate with a for loop using charAt(i), and check each character."
+        },
+        {
+          "question": "Write a method that checks if a given string is a palindrome (reads the same forwards and backwards). Example: 'racecar' is a palindrome.",
+          "hint": "Use a StringBuilder and its reverse() method, then compare with equals()."
+        }
+      ],
+      "mini_project": "Mini Project: Word Statistics\nWrite a program that takes a hardcoded sentence and prints: total character count, word count (split by spaces), number of vowels, the sentence in reverse, and whether it starts with a capital letter.",
+      "summary": "You learned how Strings work in Java, String immutability, essential String methods, why equals() must be used for comparison, and how to use StringBuilder for efficient string building. Strings are everywhere in real-world Java programming."
+    },
+    {
+      "lesson_number": 10,
+      "title": "Introduction to Object-Oriented Programming",
+      "explanation": "Object-Oriented Programming (OOP) is a programming paradigm based on the concept of objects. Rather than thinking about a program as a sequence of instructions, OOP models it as a collection of objects that interact with each other. Java is fundamentally an OOP language and understanding OOP is key to mastering Java.\n\nWhat is an Object?\nAn object is a real-world entity or concept modeled in code. Think of a car: it has properties (color, brand, speed) and behaviors (accelerate, brake, turn). In OOP, properties are called fields (or attributes) and behaviors are called methods.\n\nWhat is a Class?\nA class is a blueprint or template for creating objects. The class defines what properties and behaviors an object of that type will have. You define a class once, and can create many objects (instances) from it. Think of a class as a cookie cutter and objects as the cookies.\n\nThe Four Pillars of OOP\n1. Encapsulation: Bundling data (fields) and behavior (methods) together inside a class. It also means hiding internal implementation details from the outside world — providing a clean interface. Achieved with access modifiers (private, public).\n\n2. Inheritance: One class can inherit properties and methods from another class. A Dog class can extend an Animal class, inheriting its eat() and sleep() methods while adding its own bark() method. This promotes code reuse.\n\n3. Polymorphism: Objects of different types can be treated as objects of a common type. A method can behave differently depending on which object calls it. This allows flexible, extensible code.\n\n4. Abstraction: Hiding complex implementation details and exposing only what is necessary. A driver does not need to understand the engine's internals to drive a car. Achieved with abstract classes and interfaces in Java.\n\nWhy OOP?\nBefore OOP, programs were procedural — long lists of instructions. As programs grew larger, they became impossible to manage. OOP provides a way to organize code into logical, self-contained units. It makes large programs easier to design, understand, maintain, and extend. Real-world domains (banking, healthcare, games) map naturally to objects and classes.\n\nAnticipating the Next Lessons\nOver the next several lessons we will build on these OOP concepts step by step:\n- Lesson 11: Creating classes and objects\n- Lesson 12: Constructors\n- Lesson 13: Inheritance\n- Lesson 14: Polymorphism\nThis lesson is conceptual — take time to understand these ideas before diving into code.",
+      "sections": [
+        {
+          "heading": "Classes and Objects",
+          "content": "A class is a blueprint defining the structure and behavior of a type. An object is an instance of a class — a specific entity created from the blueprint. One class can produce many independent objects, each with their own state."
+        },
+        {
+          "heading": "Encapsulation",
+          "content": "Encapsulation means bundling data and methods together, and controlling access using private and public modifiers. Private fields are hidden; public getter/setter methods provide controlled access. This protects data integrity."
+        },
+        {
+          "heading": "Inheritance",
+          "content": "Inheritance allows a child class (subclass) to inherit fields and methods from a parent class (superclass). This enables code reuse and establishes 'is-a' relationships. In Java, use the 'extends' keyword."
+        },
+        {
+          "heading": "Polymorphism and Abstraction",
+          "content": "Polymorphism lets objects of different classes be treated through a common interface, with behavior varying per type. Abstraction hides implementation details, exposing only essential features. Together they enable flexible, extensible system design."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Thinking in Objects",
+          "code": "// Conceptual example: thinking about a BankAccount as an object\n// Fields (data): accountNumber, ownerName, balance\n// Methods (behavior): deposit, withdraw, getBalance, toString\n\n// Without OOP (procedural):\nString account1Name = \"Alice\";\ndouble account1Balance = 1000.0;\nString account2Name = \"Bob\";\ndouble account2Balance = 500.0;\n\n// With OOP, we define a BankAccount class once\n// and create as many account objects as we need:\n// BankAccount alice = new BankAccount(\"Alice\", 1000.0);\n// BankAccount bob = new BankAccount(\"Bob\", 500.0);\n// alice.deposit(200);\n// bob.withdraw(100);\n// This is cleaner, safer, and scalable!",
+          "explanation": "The procedural approach requires separate variables for each account. As accounts grow to thousands, this is unmanageable. The OOP approach lets us create any number of BankAccount objects cleanly from one blueprint."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Think of three real-world objects (e.g., a Book, a Car, a Student). For each, list at least 3 fields (properties) and 3 methods (behaviors) it might have. Write them as comments in a Java file.",
+          "hint": "Think about what data describes the object and what actions it can perform."
+        }
+      ],
+      "mini_project": "",
+      "summary": "You learned the conceptual foundation of Object-Oriented Programming: what objects and classes are, and the four pillars — encapsulation, inheritance, polymorphism, and abstraction. These concepts shape how Java programs are designed. In the next lesson you will write your first class and create objects from it."
+    },
+    {
+      "lesson_number": 11,
+      "title": "Classes and Objects",
+      "explanation": "Now that you understand OOP concepts, it is time to write actual classes and create objects. This lesson covers how to define a class with fields and methods, how to create objects using the 'new' keyword, how to access fields and methods on objects, and how to use access modifiers and getters/setters.\n\nDefining a Class\nA class is defined using the class keyword:\npublic class ClassName {\n    // fields (instance variables)\n    // methods\n}\nBy convention, class names use PascalCase (first letter of each word capitalized): BankAccount, StudentRecord.\n\nFields (Instance Variables)\nFields are variables declared inside a class but outside any method. Each object gets its own copy:\npublic class Person {\n    String name;\n    int age;\n    double height;\n}\n\nCreating Objects\nUse the 'new' keyword followed by the class name and parentheses:\nPerson p1 = new Person();\nPerson p2 = new Person();\np1 and p2 are separate objects with their own independent data.\n\nAccessing Fields and Methods\nUse dot notation to access fields and call methods on objects:\np1.name = \"Alice\";\np1.age = 30;\nSystem.out.println(p1.name);\n\nAccess Modifiers\nJava access modifiers control visibility:\n- public: accessible from anywhere\n- private: accessible only within the class\n- protected: accessible within the class and subclasses\n- (default/package-private): accessible within the same package\n\nEncapsulation with Getters and Setters\nBest practice is to make fields private and provide public getter/setter methods:\nprivate String name; // hidden\npublic String getName() { return name; } // getter\npublic void setName(String name) { this.name = name; } // setter\nThis allows you to add validation in setters (e.g., reject negative age values) without changing the external interface.\n\nThe 'this' Keyword\nInside a method or constructor, 'this' refers to the current object. It is used to distinguish between instance fields and local variables with the same name:\npublic void setAge(int age) {\n    this.age = age; // this.age is the field, age is the parameter\n}\n\nStatic vs Instance Members\nInstance fields/methods belong to each individual object. Static fields/methods belong to the class itself and are shared across all instances. Access static members via the class name: Math.PI, Math.sqrt().",
+      "sections": [
+        {
+          "heading": "Defining Classes with Fields and Methods",
+          "content": "Classes group related fields and methods. Fields hold the state of an object. Methods define its behavior. By convention, class names are PascalCase. Each class should represent a single, cohesive concept."
+        },
+        {
+          "heading": "Creating and Using Objects",
+          "content": "Create objects with the 'new' keyword. Each object is an independent instance with its own field values. Use dot notation to access fields and call methods. Multiple objects of the same class do not share field values."
+        },
+        {
+          "heading": "Encapsulation: private Fields and Getters/Setters",
+          "content": "Make fields private to protect data. Provide public getter (accessor) and setter (mutator) methods to control read/write access. Setters can include validation logic. This is the standard Java bean pattern."
+        },
+        {
+          "heading": "The 'this' Keyword and static Members",
+          "content": "this refers to the current object instance. Use it when parameter names shadow field names. Static members belong to the class, not instances. Use ClassName.staticMember to access them. Static methods cannot use 'this'."
+        }
+      ],
+      "examples": [
+        {
+          "title": "BankAccount Class",
+          "code": "public class BankAccount {\n    private String owner;\n    private double balance;\n\n    public String getOwner() {\n        return owner;\n    }\n\n    public void setOwner(String owner) {\n        this.owner = owner;\n    }\n\n    public double getBalance() {\n        return balance;\n    }\n\n    public void deposit(double amount) {\n        if (amount > 0) {\n            balance += amount;\n            System.out.println(\"Deposited: \" + amount);\n        }\n    }\n\n    public void withdraw(double amount) {\n        if (amount > 0 && amount <= balance) {\n            balance -= amount;\n            System.out.println(\"Withdrew: \" + amount);\n        } else {\n            System.out.println(\"Insufficient funds or invalid amount.\");\n        }\n    }\n\n    public void printStatement() {\n        System.out.println(\"Account: \" + owner + \" | Balance: $\" + balance);\n    }\n}\n\n// Usage in another class:\npublic class Main {\n    public static void main(String[] args) {\n        BankAccount alice = new BankAccount();\n        alice.setOwner(\"Alice\");\n        alice.deposit(1000);\n        alice.withdraw(250);\n        alice.printStatement();\n\n        BankAccount bob = new BankAccount();\n        bob.setOwner(\"Bob\");\n        bob.deposit(500);\n        bob.printStatement();\n    }\n}",
+          "explanation": "balance is private — it cannot be accessed directly from outside. Deposit/withdraw validate their inputs before modifying balance. alice and bob are independent objects with separate balances."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Create a 'Rectangle' class with private fields for width and height (double). Add getters and setters, a method to calculate area, a method to calculate perimeter, and a method to print a description. Create two Rectangle objects with different dimensions.",
+          "hint": "Area = width * height. Perimeter = 2 * (width + height). Use 'this' in setters."
+        }
+      ],
+      "mini_project": "",
+      "summary": "You learned how to define a class with fields and methods, create objects with 'new', use dot notation, apply encapsulation with private fields and getters/setters, use the 'this' keyword, and understand the difference between static and instance members. This is the foundation of all OOP in Java."
+    },
+    {
+      "lesson_number": 12,
+      "title": "Constructors",
+      "explanation": "A constructor is a special method used to initialize a new object. When you use 'new ClassName()', Java calls the constructor to set up the object's initial state. Understanding constructors is essential for creating well-initialized objects.\n\nWhat Makes a Constructor Special?\n1. A constructor has the same name as the class\n2. A constructor has no return type (not even void)\n3. A constructor is called automatically when an object is created with 'new'\n\nThe Default Constructor\nIf you do not write any constructor, Java provides a default no-argument constructor that does nothing — fields are initialized to their default values (0 for numbers, null for objects, false for booleans).\nOnce you define any constructor yourself, Java no longer provides the default one.\n\nParameterized Constructors\nA constructor can take parameters to initialize fields right when the object is created:\npublic class Person {\n    private String name;\n    private int age;\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n}\nPerson alice = new Person(\"Alice\", 30); // immediately initialized\n\nConstructor Overloading\nJust like methods, constructors can be overloaded. You can have multiple constructors with different parameter lists:\npublic Person() { // no-arg constructor\n    this.name = \"Unknown\";\n    this.age = 0;\n}\npublic Person(String name) { // one-arg constructor\n    this.name = name;\n    this.age = 0;\n}\npublic Person(String name, int age) { // two-arg constructor\n    this.name = name;\n    this.age = age;\n}\n\nUsing this() to Call Another Constructor\nInside a constructor, you can call another constructor in the same class using this():\npublic Person(String name) {\n    this(name, 0); // calls Person(String, int)\n}\nThe this() call must be the first statement in the constructor.\n\nCopy Constructor\nA copy constructor creates a new object as a copy of another:\npublic Person(Person other) {\n    this.name = other.name;\n    this.age = other.age;\n}\nPerson copy = new Person(original);\n\nConstructors vs Methods\nConstructors initialize objects; they are not regular methods. They cannot be called after object creation (except through this() or super()). Every class must have at least one constructor (either default or explicit).",
+      "sections": [
+        {
+          "heading": "Defining Constructors",
+          "content": "Constructors share the class name, have no return type, and run when 'new' is called. They initialize the object's fields. If no constructor is defined, Java provides a default no-arg constructor."
+        },
+        {
+          "heading": "Parameterized Constructors",
+          "content": "Accept parameters to initialize fields with specific values at creation time. Using parameterized constructors enforces that required data is provided when creating an object, reducing the chance of uninitialized state bugs."
+        },
+        {
+          "heading": "Constructor Overloading and this()",
+          "content": "Define multiple constructors with different signatures to provide flexible ways to create objects. Use this() to delegate to another constructor, following the DRY (Don't Repeat Yourself) principle."
+        },
+        {
+          "heading": "Copy Constructors",
+          "content": "A copy constructor creates a new independent object with the same values as another. This is useful for cloning objects. Without a copy constructor, assigning one object variable to another just copies the reference (both point to the same object)."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Constructor Overloading",
+          "code": "public class Student {\n    private String name;\n    private int grade;\n    private double gpa;\n\n    // No-arg constructor with defaults\n    public Student() {\n        this(\"Unknown\", 9, 0.0);\n    }\n\n    // Name only\n    public Student(String name) {\n        this(name, 9, 0.0);\n    }\n\n    // Full constructor\n    public Student(String name, int grade, double gpa) {\n        this.name = name;\n        this.grade = grade;\n        this.gpa = gpa;\n    }\n\n    public void describe() {\n        System.out.printf(\"Student: %s | Grade: %d | GPA: %.2f%n\",\n            name, grade, gpa);\n    }\n\n    public static void main(String[] args) {\n        Student s1 = new Student();\n        Student s2 = new Student(\"Alice\");\n        Student s3 = new Student(\"Bob\", 11, 3.85);\n\n        s1.describe();\n        s2.describe();\n        s3.describe();\n    }\n}",
+          "explanation": "Three constructors provide flexible creation. The no-arg and single-arg constructors delegate to the full constructor using this(). This avoids duplicating initialization logic."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Create a 'Car' class with fields: make (String), model (String), year (int), and price (double). Write three overloaded constructors. Create at least three Car objects using different constructors and print their details.",
+          "hint": "Have a no-arg constructor with defaults, a make+model constructor, and a full four-parameter constructor. Use this() delegation."
+        }
+      ],
+      "mini_project": "Mini Project: Library System\nCreate a Book class with fields: title, author, isbn (String), year (int), and isAvailable (boolean). Write constructors, getters/setters, a borrow() method that sets isAvailable to false, a return() method that sets it to true, and a toString() method. Create 3 books, borrow one, print all their statuses.",
+      "summary": "You learned what constructors are, how they differ from methods, how to write parameterized constructors, how to overload constructors, use this() for delegation, and write copy constructors. Constructors ensure objects are created in a valid, initialized state."
+    },
+    {
+      "lesson_number": 13,
+      "title": "Inheritance",
+      "explanation": "Inheritance is one of the most powerful features of OOP. It allows a class to inherit fields and methods from another class, enabling code reuse and establishing natural hierarchies. In Java, inheritance is implemented with the 'extends' keyword.\n\nThe Concept of Inheritance\nImagine you have an Animal class with common properties like name, age, and a method eat(). You then want to create Dog, Cat, and Bird classes. Instead of redefining name, age, and eat() in each class, you extend Animal. Each subclass automatically has all of Animal's fields and methods, plus can add its own.\n\nSuperclass and Subclass\n- Superclass (parent class): the class being inherited from\n- Subclass (child class): the class that inherits; defined with 'extends'\npublic class Dog extends Animal {\n    // Dog inherits all Animal fields and methods\n    // Dog can add its own fields and methods\n    public void bark() {\n        System.out.println(\"Woof!\");\n    }\n}\n\nThe 'super' Keyword\n'super' refers to the superclass. It is used in two ways:\n1. super.fieldName or super.methodName() to access superclass members that are hidden by subclass members with the same name.\n2. super() to call a superclass constructor. This must be the first statement in the subclass constructor.\n\nMethod Overriding\nA subclass can provide its own implementation of a method that is already defined in the superclass. This is called overriding. The @Override annotation is used (and recommended) to signal this:\n@Override\npublic void makeSound() {\n    System.out.println(\"Bark!\"); // overrides Animal's makeSound()\n}\nThe method signature (name and parameters) must match exactly.\n\nWhat is Inherited?\n- Public and protected fields and methods\n- Package-private members if in the same package\nWhat is NOT inherited:\n- Private fields and methods (they exist in the object but are not directly accessible)\n- Constructors\n\nInheritance Chain\nClasses can inherit from classes that themselves inherit: Labrador extends Dog extends Animal. This forms an inheritance chain. Java only supports single inheritance (a class can extend only one class, unlike C++).\n\nThe Object Class\nEvery class in Java implicitly extends java.lang.Object if no superclass is specified. Object provides methods like toString(), equals(), and hashCode() that all objects have.\n\nFinal Classes and Methods\nDeclaring a class as 'final' prevents it from being extended. Declaring a method as 'final' prevents it from being overridden. String is a well-known final class in Java.",
+      "sections": [
+        {
+          "heading": "extends and the Superclass/Subclass Relationship",
+          "content": "A subclass uses 'extends' to inherit from a superclass. The subclass gets all public and protected members of the superclass. It can add new members and override inherited methods. Java supports single inheritance — each class has only one direct parent."
+        },
+        {
+          "heading": "The super Keyword",
+          "content": "super() calls the superclass constructor and must be the first line in a subclass constructor. super.method() calls a superclass method. If a subclass constructor does not explicitly call super(), Java inserts super() (no-arg) automatically."
+        },
+        {
+          "heading": "Method Overriding",
+          "content": "Overriding lets a subclass provide a specific implementation for a method defined in the superclass. Use @Override annotation to make intent clear and catch errors. The method signature must match. Overriding enables polymorphism."
+        },
+        {
+          "heading": "The Object Class",
+          "content": "All Java classes implicitly extend Object. Key Object methods: toString() (returns string representation), equals() (checks equality), hashCode() (for hash-based collections). Override toString() in your classes for meaningful output."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Animal Hierarchy",
+          "code": "public class Animal {\n    protected String name;\n    protected int age;\n\n    public Animal(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    public void eat() {\n        System.out.println(name + \" is eating.\");\n    }\n\n    public void makeSound() {\n        System.out.println(name + \" makes a sound.\");\n    }\n\n    @Override\n    public String toString() {\n        return name + \" (age \" + age + \")\";\n    }\n}\n\npublic class Dog extends Animal {\n    private String breed;\n\n    public Dog(String name, int age, String breed) {\n        super(name, age); // calls Animal constructor\n        this.breed = breed;\n    }\n\n    @Override\n    public void makeSound() {\n        System.out.println(name + \" says: Woof!\");\n    }\n\n    public void fetch() {\n        System.out.println(name + \" fetches the ball!\");\n    }\n\n    @Override\n    public String toString() {\n        return super.toString() + \" [\" + breed + \"]\"; \n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Dog rex = new Dog(\"Rex\", 3, \"Labrador\");\n        rex.eat();          // inherited from Animal\n        rex.makeSound();    // overridden in Dog\n        rex.fetch();        // Dog-specific\n        System.out.println(rex); // uses toString()\n    }\n}",
+          "explanation": "Dog extends Animal, inheriting name, age, and eat(). super(name, age) calls Animal's constructor. makeSound() is overridden. fetch() is new. toString() uses super.toString() and extends it."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Create a 'Shape' superclass with a color field and an area() method that returns 0. Create 'Circle' and 'Triangle' subclasses that override area() with their specific calculations. Create one of each and print their areas.",
+          "hint": "Circle area: PI * r^2. Triangle area: 0.5 * base * height. Use Math.PI for pi."
+        }
+      ],
+      "mini_project": "",
+      "summary": "You learned how inheritance works in Java using 'extends', how to use 'super' to access superclass constructors and methods, how to override methods, what is and is not inherited, single inheritance, and the Object class. Inheritance is a key tool for building reusable and organized class hierarchies."
+    },
+    {
+      "lesson_number": 14,
+      "title": "Polymorphism",
+      "explanation": "Polymorphism means 'many forms'. In Java, polymorphism allows objects of different classes to be treated through a common interface or superclass reference. A single method call can behave differently depending on the actual object type. This is one of OOP's most powerful and practical features.\n\nCompile-Time Polymorphism (Method Overloading)\nWe already saw this in the methods lesson: multiple methods with the same name but different parameters. The compiler picks the right version based on argument types. This is resolved at compile time.\n\nRuntime Polymorphism (Method Overriding)\nThis is the more powerful form. When a superclass reference holds a subclass object, and a method is called, Java calls the subclass's overridden version at runtime:\nAnimal a = new Dog(\"Rex\", 3, \"Lab\"); // Animal reference, Dog object\na.makeSound(); // calls Dog's makeSound(), not Animal's!\nThis is dynamic dispatch. Java decides which method to call based on the actual object type, not the reference type.\n\nPolymorphism with Arrays and Parameters\nPolymorphism shines when you have collections of mixed types:\nAnimal[] animals = { new Dog(...), new Cat(...), new Bird(...) };\nfor (Animal a : animals) {\n    a.makeSound(); // each calls its own version!\n}\nThis allows you to write code that works with any Animal without knowing the specific type.\n\nAbstract Classes\nAn abstract class cannot be instantiated — you cannot create objects from it. It serves as a template for subclasses. Abstract methods have no body — subclasses must implement them:\npublic abstract class Shape {\n    public abstract double area(); // no body!\n    public void describe() {\n        System.out.println(\"Area: \" + area());\n    }\n}\nAny class with at least one abstract method must be declared abstract.\n\nInterfaces\nAn interface is a completely abstract type defining a contract. It contains abstract methods (and constants). Classes implement interfaces with 'implements'. A class can implement multiple interfaces (unlike single inheritance).\npublic interface Drawable {\n    void draw();\n    void resize(double factor);\n}\npublic class Circle extends Shape implements Drawable {\n    public void draw() { System.out.println(\"Drawing circle\"); }\n    ...\n}\n\nThe instanceof Operator\nUse instanceof to check an object's type before casting:\nif (animal instanceof Dog) {\n    Dog d = (Dog) animal;\n    d.fetch();\n}",
+      "sections": [
+        {
+          "heading": "Runtime Polymorphism",
+          "content": "A superclass reference can hold a subclass object. Method calls are resolved at runtime based on the actual object's type, not the reference type. This is called dynamic dispatch or runtime polymorphism and is achieved through method overriding."
+        },
+        {
+          "heading": "Abstract Classes and Methods",
+          "content": "Abstract classes provide a partial implementation and define a template. Abstract methods have no body — subclasses must provide the implementation. Abstract classes cannot be instantiated directly. They enforce a contract on subclasses."
+        },
+        {
+          "heading": "Interfaces",
+          "content": "An interface is a pure contract with no implementation (by default). Classes implement interfaces and must provide all interface methods. A class can implement multiple interfaces. Interfaces define 'can-do' relationships (e.g., Serializable, Comparable)."
+        },
+        {
+          "heading": "Casting and instanceof",
+          "content": "Upcasting (subclass to superclass) is automatic. Downcasting (superclass to subclass) requires explicit cast and can throw ClassCastException if wrong. Always use instanceof to verify type before downcasting."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Polymorphism with Abstract Class",
+          "code": "public abstract class Shape {\n    protected String color;\n\n    public Shape(String color) {\n        this.color = color;\n    }\n\n    public abstract double area();\n\n    public void describe() {\n        System.out.printf(\"%s %s with area %.2f%n\",\n            color, getClass().getSimpleName(), area());\n    }\n}\n\npublic class Circle extends Shape {\n    private double radius;\n    public Circle(String color, double radius) {\n        super(color);\n        this.radius = radius;\n    }\n    @Override\n    public double area() { return Math.PI * radius * radius; }\n}\n\npublic class Rectangle extends Shape {\n    private double width, height;\n    public Rectangle(String color, double width, double height) {\n        super(color);\n        this.width = width;\n        this.height = height;\n    }\n    @Override\n    public double area() { return width * height; }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Shape[] shapes = {\n            new Circle(\"Red\", 5),\n            new Rectangle(\"Blue\", 4, 6),\n            new Circle(\"Green\", 3)\n        };\n\n        for (Shape s : shapes) {\n            s.describe(); // each calls its own area()\n        }\n    }\n}",
+          "explanation": "Shape is abstract with abstract area(). Circle and Rectangle must implement area(). The shapes array holds different types. The for loop calls describe() which internally calls area() — each shape provides its own calculation. This is polymorphism."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Create an interface called 'Playable' with methods play() and stop(). Create two classes 'MusicPlayer' and 'VideoPlayer' that implement it differently. Store them in a Playable array and call play() on each.",
+          "hint": "Both classes implement Playable. The for loop calls play() — each class has its own implementation."
+        }
+      ],
+      "mini_project": "Mini Project: Shape Calculator\nCreate an abstract Shape class with abstract methods area() and perimeter(). Implement Circle, Rectangle, and Triangle subclasses. Create an array of 5 shapes (mix of types), iterate over them, and print each shape's type, area, and perimeter. Calculate total area of all shapes combined.",
+      "summary": "You mastered runtime polymorphism through method overriding and dynamic dispatch, abstract classes and methods, interfaces as contracts, and type checking with instanceof. Polymorphism enables flexible, extensible code that works with many types through a unified interface."
+    },
+    {
+      "lesson_number": 15,
+      "title": "Exception Handling",
+      "explanation": "No matter how carefully you write code, errors happen at runtime. A user enters invalid input, a file is not found, network connection fails, dividing by zero occurs. Java's exception handling mechanism lets you deal with these situations gracefully instead of letting the program crash.\n\nWhat is an Exception?\nAn exception is an event that disrupts the normal flow of the program. When an error occurs, Java creates an exception object with information about the error and 'throws' it. If no code catches it, the program terminates with an error message.\n\nException Hierarchy\nAll exceptions in Java are objects. They inherit from Throwable:\n- Error: serious problems outside your control (OutOfMemoryError) — typically not caught\n- Exception: conditions your program should handle\n  - RuntimeException (unchecked): programming errors; can occur anywhere (NullPointerException, ArrayIndexOutOfBoundsException, NumberFormatException)\n  - Checked exceptions: must be handled or declared; typically I/O errors (IOException, FileNotFoundException)\n\nThe try-catch Block\nWrap risky code in a try block. Catch specific exceptions in catch blocks:\ntry {\n    // code that might throw an exception\n} catch (ExceptionType e) {\n    // handle the exception\n} finally {\n    // always runs, exception or not\n}\n\nMultiple Catch Blocks\nYou can catch different exception types:\ntry {\n    int[] arr = new int[5];\n    arr[10] = 42; // throws ArrayIndexOutOfBoundsException\n} catch (ArrayIndexOutOfBoundsException e) {\n    System.out.println(\"Invalid array index!\");\n} catch (Exception e) {\n    System.out.println(\"Some other error: \" + e.getMessage());\n}\nCatch from most specific to most general.\n\nThe finally Block\nThe finally block always executes whether an exception was thrown or not. Used for cleanup code like closing files or database connections.\n\nThrowing Exceptions\nYou can throw exceptions intentionally:\nif (age < 0) {\n    throw new IllegalArgumentException(\"Age cannot be negative: \" + age);\n}\n\nCustom Exceptions\nCreate your own exception classes by extending Exception or RuntimeException:\npublic class InsufficientFundsException extends Exception {\n    public InsufficientFundsException(String message) {\n        super(message);\n    }\n}\n\nChecked vs Unchecked Exceptions\nChecked: must be handled with try-catch or declared with 'throws' in method signature. Checked at compile time.\nUnchecked (RuntimeException subclasses): optional to handle. They represent programming mistakes.\n\nBest Practices\n- Catch specific exceptions, not just Exception\n- Do not swallow exceptions (empty catch blocks)\n- Use meaningful error messages\n- Log exceptions for debugging\n- Clean up resources in finally or use try-with-resources",
+      "sections": [
+        {
+          "heading": "The try-catch-finally Block",
+          "content": "Wrap risky code in try. Handle specific exception types in separate catch blocks. The finally block always runs. This pattern prevents program crashes and allows graceful error handling and cleanup."
+        },
+        {
+          "heading": "Common Java Exceptions",
+          "content": "NullPointerException: accessing methods on null reference. ArrayIndexOutOfBoundsException: invalid array index. NumberFormatException: parsing invalid number string. ClassCastException: invalid type cast. ArithmeticException: math errors like division by zero."
+        },
+        {
+          "heading": "Throwing and Custom Exceptions",
+          "content": "Use 'throw new ExceptionType(message)' to throw exceptions manually for invalid states. Create custom exceptions by extending Exception or RuntimeException to represent domain-specific errors like InsufficientFundsException or InvalidAgeException."
+        },
+        {
+          "heading": "Checked vs Unchecked Exceptions",
+          "content": "Checked exceptions (IOException, etc.) must be handled at compile time. Unchecked exceptions (RuntimeException subclasses) are optional to handle. Methods that throw checked exceptions must declare 'throws ExceptionType' in their signature."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Exception Handling in Practice",
+          "code": "public class ExceptionDemo {\n\n    public static int divide(int a, int b) {\n        if (b == 0) {\n            throw new ArithmeticException(\"Cannot divide by zero!\");\n        }\n        return a / b;\n    }\n\n    public static int parseAndDouble(String input) {\n        int number = Integer.parseInt(input); // throws NumberFormatException\n        return number * 2;\n    }\n\n    public static void main(String[] args) {\n        // Handling ArithmeticException\n        try {\n            int result = divide(10, 0);\n            System.out.println(result);\n        } catch (ArithmeticException e) {\n            System.out.println(\"Error: \" + e.getMessage());\n        } finally {\n            System.out.println(\"Division attempt complete.\");\n        }\n\n        // Handling NumberFormatException\n        String[] inputs = {\"42\", \"abc\", \"17\"};\n        for (String input : inputs) {\n            try {\n                System.out.println(input + \" doubled = \" + parseAndDouble(input));\n            } catch (NumberFormatException e) {\n                System.out.println(\"'\" + input + \"' is not a valid number.\");\n            }\n        }\n    }\n}",
+          "explanation": "divide() throws ArithmeticException explicitly when b is 0. parseAndDouble() lets Integer.parseInt() throw naturally. The finally block runs whether exception occurs or not. The loop handles parsing errors without crashing."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Write a method 'safeSqrt' that takes a double and throws an IllegalArgumentException if the input is negative. Otherwise, return the square root. Test it with positive, zero, and negative inputs.",
+          "hint": "Use Math.sqrt() for the calculation. Wrap the method call in try-catch in main."
+        }
+      ],
+      "mini_project": "",
+      "summary": "You learned what exceptions are, the exception hierarchy, how to use try-catch-finally, catch multiple exceptions, throw exceptions manually, create custom exceptions, and the difference between checked and unchecked exceptions. Robust exception handling is what separates professional code from beginner code."
+    },
+    {
+      "lesson_number": 16,
+      "title": "File Handling",
+      "explanation": "Most real-world applications need to read and write data that persists beyond the program's lifetime. Files are the most common form of persistent storage. Java provides rich libraries for file handling in the java.io and java.nio packages.\n\nKey Classes for File Handling\n- File: represents a file or directory path (does not read/write by itself)\n- FileReader / FileWriter: read/write character data\n- BufferedReader / BufferedWriter: wrap File readers/writers for efficiency (reads/writes lines)\n- Scanner: convenient for reading input from files\n- PrintWriter: convenient for writing formatted text to files\n- FileInputStream / FileOutputStream: for binary data\n- Files (java.nio.file): modern utility class (Java 7+)\n- Path, Paths (java.nio.file): modern file path representation\n\nReading a File\nThe most common approach for reading text files:\ntry (BufferedReader br = new BufferedReader(new FileReader(\"data.txt\"))) {\n    String line;\n    while ((line = br.readLine()) != null) {\n        System.out.println(line);\n    }\n} catch (IOException e) {\n    System.out.println(\"Error reading file: \" + e.getMessage());\n}\n\nThe try-with-resources syntax (try (...)) automatically closes the reader when done, even if an exception occurs. This is the recommended approach.\n\nWriting to a File\ntry (PrintWriter pw = new PrintWriter(new FileWriter(\"output.txt\"))) {\n    pw.println(\"First line\");\n    pw.println(\"Second line\");\n} catch (IOException e) {\n    System.out.println(\"Error writing file: \" + e.getMessage());\n}\nUse FileWriter(\"file.txt\", true) to append instead of overwrite.\n\nChecking File Properties\nFile file = new File(\"data.txt\");\nfile.exists() — does the file exist?\nfile.canRead() — can we read it?\nfile.length() — size in bytes\nfile.getName() — filename only\nfile.getAbsolutePath() — full path\n\nModern Approach: java.nio.file.Files\nJava 7 introduced a cleaner API:\nList<String> lines = Files.readAllLines(Paths.get(\"data.txt\"));\nFiles.write(Paths.get(\"output.txt\"), lines);\nString content = Files.readString(Paths.get(\"data.txt\")); // Java 11+\n\nWorking with Directories\nFile dir = new File(\"myFolder\");\ndir.mkdir(); // create directory\nFile[] files = dir.listFiles(); // list contents\n\nFile I/O always involves checked exceptions (IOException) that must be handled.",
+      "sections": [
+        {
+          "heading": "Reading Files",
+          "content": "Use BufferedReader with FileReader for efficient line-by-line reading. The try-with-resources block automatically closes streams. readLine() returns null at end of file. Scanner can also read from files and is simpler for parsing."
+        },
+        {
+          "heading": "Writing Files",
+          "content": "Use PrintWriter with FileWriter to write text. FileWriter(file) overwrites; FileWriter(file, true) appends. BufferedWriter is also common. Always use try-with-resources to ensure streams are closed even if an error occurs."
+        },
+        {
+          "heading": "The File Class",
+          "content": "The File class represents a path to a file or directory. It provides methods to check existence, create, delete, list directory contents, and get metadata. It does not read/write data itself — use reader/writer classes for that."
+        },
+        {
+          "heading": "Modern NIO: Files and Paths",
+          "content": "The java.nio.file package provides a cleaner, more powerful API. Files.readAllLines() reads entire file into a List. Files.readString() reads as one String. Files.write() writes a list of lines. Paths.get() creates a Path from a string."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Read and Write Text Files",
+          "code": "import java.io.*;\nimport java.nio.file.*;\nimport java.util.*;\n\npublic class FileDemo {\n    public static void main(String[] args) {\n        // Writing a file\n        String filename = \"students.txt\";\n        try (PrintWriter pw = new PrintWriter(new FileWriter(filename))) {\n            pw.println(\"Alice,90\");\n            pw.println(\"Bob,85\");\n            pw.println(\"Charlie,92\");\n            System.out.println(\"File written.\");\n        } catch (IOException e) {\n            System.out.println(\"Write error: \" + e.getMessage());\n        }\n\n        // Reading the file\n        System.out.println(\"\\nReading file:\");\n        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {\n            String line;\n            while ((line = br.readLine()) != null) {\n                String[] parts = line.split(\",\");\n                System.out.println(\"Name: \" + parts[0] + \", Score: \" + parts[1]);\n            }\n        } catch (IOException e) {\n            System.out.println(\"Read error: \" + e.getMessage());\n        }\n\n        // Modern NIO approach\n        try {\n            List<String> allLines = Files.readAllLines(Paths.get(filename));\n            System.out.println(\"\\nTotal lines: \" + allLines.size());\n        } catch (IOException e) {\n            System.out.println(\"NIO error: \" + e.getMessage());\n        }\n    }\n}",
+          "explanation": "PrintWriter writes three lines of CSV-like data. BufferedReader reads line by line and splits on comma. NIO's readAllLines reads the entire file at once. try-with-resources ensures streams close automatically."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Write a program that creates a file 'numbers.txt' containing numbers 1-20 (one per line), then reads it back and prints the sum and average.",
+          "hint": "Write with a loop and PrintWriter. Read with BufferedReader, parse each line with Integer.parseInt()."
+        }
+      ],
+      "mini_project": "",
+      "summary": "You learned how to read and write text files using BufferedReader, FileReader, PrintWriter, and FileWriter. You used try-with-resources for safe resource management, explored the File class for metadata, and saw the modern NIO approach. File I/O makes your programs able to save and load data persistently."
+    },
+    {
+      "lesson_number": 17,
+      "title": "Collections Framework",
+      "explanation": "Arrays have limitations: they have a fixed size and limited built-in operations. Java's Collections Framework provides a set of powerful, flexible data structures for storing and manipulating groups of objects. Understanding collections is essential for practical Java development.\n\nThe Collections Hierarchy\nThe main interfaces are:\n- Collection: root interface for all collections\n  - List: ordered, allows duplicates (ArrayList, LinkedList)\n  - Set: unordered, no duplicates (HashSet, TreeSet, LinkedHashSet)\n  - Queue: FIFO ordering (LinkedList, PriorityQueue)\n- Map: key-value pairs, not part of Collection (HashMap, TreeMap, LinkedHashMap)\n\nArrayList\nThe most commonly used collection. Think of it as a dynamic array that grows automatically:\nArrayList<String> names = new ArrayList<>();\nnames.add(\"Alice\");\nnames.add(\"Bob\");\nnames.get(0); // \"Alice\"\nnames.size(); // 2\nnames.remove(\"Bob\");\nnames.contains(\"Alice\"); // true\n\nLinkedList\nA doubly-linked list. Better performance for insertions/deletions but slower for random access. Also implements Deque (double-ended queue) interface.\n\nHashSet\nStores unique elements with no guaranteed order:\nHashSet<Integer> numbers = new HashSet<>();\nnumbers.add(5);\nnumbers.add(5); // duplicate, ignored\nnumbers.size(); // 1\n\nTreeSet\nLike HashSet but keeps elements sorted in natural order.\n\nHashMap\nStores key-value pairs with O(1) average lookup:\nHashMap<String, Integer> scores = new HashMap<>();\nscores.put(\"Alice\", 95);\nscores.put(\"Bob\", 87);\nscores.get(\"Alice\"); // 95\nscores.containsKey(\"Bob\"); // true\nscores.keySet(); // set of keys\nscores.values(); // collection of values\nscores.entrySet(); // set of key-value pairs\n\nGenerics\nCollections use generics (the <Type> syntax) to ensure type safety. ArrayList<String> can only hold Strings — the compiler enforces this and eliminates the need for casting.\n\nIterating Collections\nfor-each: for (String name : names) { ... }\niterator: Iterator<String> it = names.iterator(); while(it.hasNext()) { it.next(); }\nforEach with lambda (Java 8+): names.forEach(name -> System.out.println(name));\n\nCollections Utility Class\njava.util.Collections provides static utility methods:\nCollections.sort(list): sorts a List\nCollections.reverse(list): reverses\nCollections.min(list) / Collections.max(list): finds extremes\nCollections.shuffle(list): randomizes order",
+      "sections": [
+        {
+          "heading": "ArrayList and LinkedList",
+          "content": "ArrayList uses a dynamic array internally — fast for random access (get/set), slower for insertions in the middle. LinkedList uses nodes with pointers — fast for insertions/deletions, slower for random access. ArrayList is the default choice for most use cases."
+        },
+        {
+          "heading": "HashSet and TreeSet",
+          "content": "Sets store unique elements. HashSet uses hashing for O(1) operations but has no guaranteed order. TreeSet keeps elements sorted (natural order or custom Comparator) but is slower at O(log n). LinkedHashSet preserves insertion order."
+        },
+        {
+          "heading": "HashMap and TreeMap",
+          "content": "Maps store key-value pairs. Keys are unique. HashMap provides O(1) lookup with no order. TreeMap keeps keys sorted. LinkedHashMap preserves insertion order. Iterate with entrySet() for both key and value access."
+        },
+        {
+          "heading": "Generics and Collections Utilities",
+          "content": "Generics ensure type safety at compile time. The Collections class provides sort(), shuffle(), min(), max(), reverse(), and other utilities for List objects. java.util.Arrays.asList() converts arrays to Lists."
+        }
+      ],
+      "examples": [
+        {
+          "title": "ArrayList and HashMap in Action",
+          "code": "import java.util.*;\n\npublic class CollectionsDemo {\n    public static void main(String[] args) {\n        // ArrayList\n        ArrayList<String> fruits = new ArrayList<>();\n        fruits.add(\"Apple\");\n        fruits.add(\"Banana\");\n        fruits.add(\"Cherry\");\n        fruits.add(\"Apple\"); // duplicates allowed\n        System.out.println(\"Fruits: \" + fruits);\n        System.out.println(\"Size: \" + fruits.size());\n        Collections.sort(fruits);\n        System.out.println(\"Sorted: \" + fruits);\n\n        // HashSet - unique fruits\n        HashSet<String> uniqueFruits = new HashSet<>(fruits);\n        System.out.println(\"Unique: \" + uniqueFruits);\n\n        // HashMap - fruit counts\n        HashMap<String, Integer> inventory = new HashMap<>();\n        inventory.put(\"Apple\", 50);\n        inventory.put(\"Banana\", 30);\n        inventory.put(\"Cherry\", 20);\n\n        System.out.println(\"\\nInventory:\");\n        for (Map.Entry<String, Integer> entry : inventory.entrySet()) {\n            System.out.println(entry.getKey() + \": \" + entry.getValue());\n        }\n\n        // Checking total stock\n        int total = 0;\n        for (int count : inventory.values()) {\n            total += count;\n        }\n        System.out.println(\"Total stock: \" + total);\n    }\n}",
+          "explanation": "ArrayList allows duplicates and maintains insertion order. Creating a HashSet from the ArrayList removes the duplicate Apple. HashMap stores fruit:count pairs. entrySet() iterates both key and value efficiently."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Create a program that reads a list of 10 words (hardcoded ArrayList), removes duplicates using a HashSet, sorts the unique words, and prints them. Also use a HashMap to count how many times each word appears.",
+          "hint": "Use HashMap.getOrDefault(word, 0) + 1 to increment counts."
+        }
+      ],
+      "mini_project": "Mini Project: Student Grade Book\nCreate a program using a HashMap<String, ArrayList<Integer>> to store student names and their test scores. Add at least 4 students with 3 scores each. Write methods to: add a student, add a score, calculate average for a student, find the top student. Print a full report.",
+      "summary": "You learned about the Java Collections Framework including ArrayList, LinkedList, HashSet, TreeSet, HashMap, and TreeMap. You practiced using generics for type safety, iterating collections, and using the Collections utility class. Collections are the data structures you will use most in real-world Java development."
+    },
+    {
+      "lesson_number": 18,
+      "title": "Streams and Lambdas",
+      "explanation": "Java 8 introduced lambdas and the Stream API — two of the most significant additions to Java in decades. These features bring functional programming concepts to Java, enabling you to write more concise, readable, and efficient data processing code.\n\nLambda Expressions\nA lambda expression is essentially a compact anonymous function. Instead of:\nCollections.sort(list, new Comparator<String>() {\n    public int compare(String a, String b) {\n        return a.compareTo(b);\n    }\n});\nYou write:\nlist.sort((a, b) -> a.compareTo(b));\nOr even simpler: list.sort(String::compareTo);\n\nLambda syntax: (parameters) -> expression OR (parameters) -> { statements; }\nLambdas are used with functional interfaces — interfaces with exactly one abstract method.\n\nCommon Functional Interfaces (java.util.function)\n- Predicate<T>: takes T, returns boolean (e.g., x -> x > 0)\n- Function<T,R>: takes T, returns R (e.g., s -> s.length())\n- Consumer<T>: takes T, returns nothing (e.g., x -> System.out.println(x))\n- Supplier<T>: takes nothing, returns T (e.g., () -> new ArrayList<>())\n- BiFunction<T,U,R>: takes T and U, returns R\n\nMethod References\nShorthand for lambdas that call an existing method:\nSystem.out::println (static/instance method reference)\nString::toUpperCase (instance method reference)\nPerson::new (constructor reference)\n\nThe Stream API\nA Stream is a sequence of elements that supports functional-style operations. Streams do not store data — they process data from a source (collection, array) through a pipeline of operations.\n\nCreating Streams:\nlist.stream() — from a collection\nArrays.stream(array) — from an array\nStream.of(a, b, c) — from values\nStream.generate(() -> Math.random()) — infinite stream\n\nIntermediate Operations (return a Stream, lazy):\n- filter(predicate): keep only elements matching predicate\n- map(function): transform each element\n- sorted(): sort elements\n- distinct(): remove duplicates\n- limit(n): take first n elements\n- peek(): for debugging, inspect elements\n\nTerminal Operations (produce a result, trigger execution):\n- collect(Collectors.toList()): collect into List\n- forEach(consumer): process each element\n- count(): count elements\n- sum(), average(), min(), max() (on numeric streams)\n- reduce(): combine elements into one value\n- anyMatch(), allMatch(), noneMatch(): boolean checks\n- findFirst(), findAny(): return Optional\n\nOptional\nStream operations like findFirst() return an Optional<T> — a container that may or may not hold a value. This avoids NullPointerException:\nOptional<String> first = list.stream().filter(s -> s.startsWith(\"A\")).findFirst();\nfirst.ifPresent(System.out::println);\nfirst.orElse(\"No match\");",
+      "sections": [
+        {
+          "heading": "Lambda Expressions",
+          "content": "Lambdas are anonymous functions that implement functional interfaces. They replace verbose anonymous inner class syntax. Format: (params) -> expression. They can be passed as arguments, stored in variables, and returned from methods."
+        },
+        {
+          "heading": "The Stream API",
+          "content": "Streams provide a declarative way to process collections. Create a stream from a source, apply intermediate operations (filter, map, sorted), then a terminal operation (collect, forEach, count). Streams are lazy — intermediate operations only execute when a terminal operation is reached."
+        },
+        {
+          "heading": "Common Stream Operations",
+          "content": "filter() selects elements. map() transforms elements. sorted() orders them. distinct() removes duplicates. collect() gathers results into a collection. reduce() aggregates to a single value. count(), sum(), average() compute statistics."
+        },
+        {
+          "heading": "Method References and Optional",
+          "content": "Method references (ClassName::method) are concise lambda shortcuts. Optional<T> wraps a value that may be absent, preventing null pointer errors. Use ifPresent(), orElse(), orElseThrow() to handle Optional values safely."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Stream Pipeline",
+          "code": "import java.util.*;\nimport java.util.stream.*;\n\npublic class StreamDemo {\n    public static void main(String[] args) {\n        List<Integer> numbers = Arrays.asList(5, 3, 8, 1, 9, 2, 7, 4, 6, 10);\n\n        // Filter evens, square them, sort, collect\n        List<Integer> result = numbers.stream()\n            .filter(n -> n % 2 == 0)      // [8, 2, 4, 6, 10]\n            .map(n -> n * n)              // [64, 4, 16, 36, 100]\n            .sorted()                     // [4, 16, 36, 64, 100]\n            .collect(Collectors.toList());\n        System.out.println(\"Result: \" + result);\n\n        // Statistics\n        IntSummaryStatistics stats = numbers.stream()\n            .mapToInt(Integer::intValue)\n            .summaryStatistics();\n        System.out.println(\"Count: \" + stats.getCount());\n        System.out.println(\"Sum: \" + stats.getSum());\n        System.out.println(\"Average: \" + stats.getAverage());\n        System.out.println(\"Max: \" + stats.getMax());\n        System.out.println(\"Min: \" + stats.getMin());\n\n        // String operations\n        List<String> names = Arrays.asList(\"Alice\", \"Bob\", \"Charlie\", \"Anna\", \"Dave\");\n        String nameString = names.stream()\n            .filter(n -> n.startsWith(\"A\"))\n            .map(String::toUpperCase)\n            .sorted()\n            .collect(Collectors.joining(\", \"));\n        System.out.println(\"Names starting with A: \" + nameString);\n    }\n}",
+          "explanation": "The first pipeline filters even numbers, squares them, sorts, and collects. summaryStatistics() computes count/sum/avg/max/min in one pass. The string pipeline filters by first letter, uppercases, sorts, and joins with Collectors.joining()."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Given a list of 10 student names and scores (use a simple List of strings like 'Alice:85'), use streams to: filter students who scored above 80, extract and uppercase their names, sort alphabetically, and print.",
+          "hint": "map() to extract the score, filter() to compare, then map() again to extract the name."
+        }
+      ],
+      "mini_project": "",
+      "summary": "You learned about lambda expressions, functional interfaces, method references, and the Stream API. Stream pipelines with filter, map, sorted, and collect enable elegant, readable data processing. These are modern Java skills expected in professional Java development."
+    },
+    {
+      "lesson_number": 19,
+      "title": "Building a Java CLI Application",
+      "explanation": "Now it is time to put everything you have learned together and build a complete command-line application. A CLI (Command-Line Interface) application runs in the terminal and interacts with users through text input and output. This is an excellent way to practice Java before moving to GUI or web applications.\n\nPlanning the Application\nWe will build a Student Grade Manager CLI application that allows users to:\n1. Add a student with their name\n2. Add grades for a student\n3. View all students and their averages\n4. Find the top student\n5. Exit the application\n\nThis uses: classes, objects, collections (HashMap, ArrayList), loops, conditionals, methods, exception handling, and user input.\n\nReading User Input with Scanner\nImport java.util.Scanner:\nScanner scanner = new Scanner(System.in);\nString input = scanner.nextLine(); // reads a whole line\nint num = scanner.nextInt(); // reads an integer\ndouble d = scanner.nextDouble(); // reads a double\nAlways call scanner.close() when done, or use try-with-resources.\n\nApplication Architecture\nGood CLI applications separate concerns:\n- Model class: holds data (Student class)\n- Service class: business logic (GradeBook class)\n- Main/UI class: handles user interaction (input/output)\n\nBuilding the Menu Loop\nA CLI app typically has a main loop that displays a menu, reads a choice, and executes the corresponding action:\nwhile (true) {\n    printMenu();\n    int choice = scanner.nextInt();\n    scanner.nextLine(); // consume newline\n    switch (choice) {\n        case 1: addStudent(); break;\n        case 2: addGrade(); break;\n        case 3: viewAll(); break;\n        case 4: findTop(); break;\n        case 5: System.out.println(\"Goodbye!\"); return;\n        default: System.out.println(\"Invalid option.\");\n    }\n}\n\nInput Validation\nAlways validate user input. Wrap Scanner reads in try-catch for NumberFormatException. Check for empty strings. Provide helpful error messages and let the user try again.\n\nFormatted Output\nUse printf or String.format for clean, aligned output:\nSystem.out.printf(\"%-15s %6.2f%n\", name, average);\n%-15s: left-align string in 15-char field\n%6.2f: float with 6 total width, 2 decimal places\n\nThis lesson walks through the complete application, demonstrating how all previous lessons come together in a real project.",
+      "sections": [
+        {
+          "heading": "Reading User Input with Scanner",
+          "content": "Scanner reads from System.in (keyboard). nextLine() reads a full line. nextInt() and nextDouble() read numbers. After nextInt(), call nextLine() to consume the leftover newline. Close Scanner when done."
+        },
+        {
+          "heading": "Application Architecture",
+          "content": "Separate your application into data classes (model), logic classes (service), and I/O classes (UI/main). This separation of concerns makes code easier to read, test, and modify. Even small CLI apps benefit from this structure."
+        },
+        {
+          "heading": "The Menu Loop Pattern",
+          "content": "A while(true) loop with a switch statement is the standard CLI menu pattern. Each case handles one user action. A specific choice (like 5 for Exit) breaks the loop or calls return. Default handles invalid input."
+        },
+        {
+          "heading": "Input Validation and Formatted Output",
+          "content": "Always validate input with try-catch and conditional checks. Never assume user input is correct. Use System.out.printf for aligned tabular output. Good formatting makes CLI apps professional and readable."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Student Grade Manager CLI",
+          "code": "import java.util.*;\n\npublic class GradeManager {\n    private HashMap<String, ArrayList<Integer>> gradeBook = new HashMap<>();\n    private Scanner scanner = new Scanner(System.in);\n\n    public void run() {\n        System.out.println(\"=== Student Grade Manager ===\");\n        while (true) {\n            printMenu();\n            String choice = scanner.nextLine().trim();\n            switch (choice) {\n                case \"1\": addStudent(); break;\n                case \"2\": addGrade(); break;\n                case \"3\": viewAll(); break;\n                case \"4\": findTopStudent(); break;\n                case \"5\":\n                    System.out.println(\"Goodbye!\");\n                    scanner.close();\n                    return;\n                default:\n                    System.out.println(\"Invalid option. Try again.\");\n            }\n        }\n    }\n\n    private void printMenu() {\n        System.out.println(\"\\n1. Add Student\\n2. Add Grade\\n3. View All\\n4. Top Student\\n5. Exit\");\n        System.out.print(\"Choice: \");\n    }\n\n    private void addStudent() {\n        System.out.print(\"Enter student name: \");\n        String name = scanner.nextLine().trim();\n        if (name.isEmpty()) {\n            System.out.println(\"Name cannot be empty.\");\n            return;\n        }\n        gradeBook.putIfAbsent(name, new ArrayList<>());\n        System.out.println(name + \" added.\");\n    }\n\n    private void addGrade() {\n        System.out.print(\"Student name: \");\n        String name = scanner.nextLine().trim();\n        if (!gradeBook.containsKey(name)) {\n            System.out.println(\"Student not found.\");\n            return;\n        }\n        System.out.print(\"Enter grade (0-100): \");\n        try {\n            int grade = Integer.parseInt(scanner.nextLine().trim());\n            if (grade < 0 || grade > 100) throw new IllegalArgumentException();\n            gradeBook.get(name).add(grade);\n            System.out.println(\"Grade added.\");\n        } catch (Exception e) {\n            System.out.println(\"Invalid grade. Enter a number between 0 and 100.\");\n        }\n    }\n\n    private void viewAll() {\n        if (gradeBook.isEmpty()) {\n            System.out.println(\"No students yet.\");\n            return;\n        }\n        System.out.printf(\"%n%-20s %-10s %-10s%n\", \"Name\", \"Grades\", \"Average\");\n        System.out.println(\"-\".repeat(42));\n        for (Map.Entry<String, ArrayList<Integer>> entry : gradeBook.entrySet()) {\n            double avg = entry.getValue().stream()\n                .mapToInt(Integer::intValue).average().orElse(0);\n            System.out.printf(\"%-20s %-10s %-10.2f%n\",\n                entry.getKey(), entry.getValue(), avg);\n        }\n    }\n\n    private void findTopStudent() {\n        gradeBook.entrySet().stream()\n            .filter(e -> !e.getValue().isEmpty())\n            .max(Comparator.comparingDouble(e ->\n                e.getValue().stream().mapToInt(Integer::intValue).average().orElse(0)))\n            .ifPresentOrElse(\n                e -> System.out.println(\"Top student: \" + e.getKey()),\n                () -> System.out.println(\"No grades recorded yet.\")\n            );\n    }\n\n    public static void main(String[] args) {\n        new GradeManager().run();\n    }\n}",
+          "explanation": "This is a complete, functional CLI app. It uses HashMap for grade storage, Scanner for input, switch for menu routing, try-catch for input validation, streams for averages and finding top student, and formatted output with printf. All major concepts from the course are represented."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Extend the Grade Manager with a 'Remove Student' option that removes a student and all their grades from the gradebook. Add proper error handling if the student does not exist.",
+          "hint": "Use HashMap's remove() method. Ask for student name, check containsKey() first."
+        }
+      ],
+      "mini_project": "",
+      "summary": "You built a complete CLI application that integrates classes, collections, streams, exception handling, user input, and formatted output. This demonstrates how all the individual concepts learned throughout the course work together in a real application. In the final lesson, you will build a larger final project independently."
+    },
+    {
+      "lesson_number": 20,
+      "title": "Final Project: Personal Budget Tracker",
+      "explanation": "Congratulations on reaching the final lesson! In this capstone project, you will design and build a complete Personal Budget Tracker CLI application. This project will require you to apply everything you have learned throughout the course: OOP design, collections, streams, file handling, exception handling, and user input.\n\nProject Overview\nThe Personal Budget Tracker will allow users to:\n1. Add income entries (amount, description, date)\n2. Add expense entries (amount, category, description, date)\n3. View all transactions\n4. View balance (total income - total expenses)\n5. View expenses by category (using streams)\n6. Save transactions to a file\n7. Load transactions from a file\n8. Exit\n\nOOP Design\nYou should create these classes:\n- Transaction (abstract): id (int), amount (double), description (String), date (String)\n- Income extends Transaction\n- Expense extends Transaction with category (String)\n- BudgetTracker: main service class holding the transactions list and business logic\n- FileManager: handles saving and loading\n- BudgetApp: main class with menu loop\n\nThis design uses inheritance, polymorphism (list of Transaction objects holding Income and Expense), encapsulation, and separation of concerns.\n\nCollections to Use\n- ArrayList<Transaction>: store all transactions\n- HashMap<String, Double>: aggregate expenses by category\n\nStreams to Use\n- Filter income/expense by type (instanceof)\n- Calculate totals (mapToDouble + sum)\n- Group by category (Collectors.groupingBy)\n- Find largest expense\n\nFile Persistence\n- Save: write each transaction to a CSV file\n- Load: read CSV lines, parse fields, create Transaction objects\n\nException Handling\n- Invalid amount input\n- File not found on load\n- Negative amounts\n\nThis project is intentionally challenging. You may need to look back at previous lessons. That is normal and encouraged. The goal is to build something you are proud of that demonstrates your Java skills.\n\nTips for Success\n1. Start with the data model (Transaction, Income, Expense classes)\n2. Build and test BudgetTracker methods one at a time\n3. Add the CLI menu loop last\n4. Add file I/O after core features work\n5. Test each feature thoroughly before moving to the next\n6. Add meaningful validation and error messages throughout\n\nBonus Challenges\n- Add a monthly view (filter by month in date)\n- Add budget limits per category with warnings\n- Add a simple text-based bar chart of expenses by category\n- Sort transactions by date or amount",
+      "sections": [
+        {
+          "heading": "Project Architecture",
+          "content": "Design the project with clear separation: model classes (Transaction, Income, Expense), service class (BudgetTracker), I/O class (FileManager), and main/UI class. This mirrors real-world Java application structure and makes the code maintainable."
+        },
+        {
+          "heading": "Applying OOP Principles",
+          "content": "Use inheritance for Income/Expense extending Transaction. Use polymorphism to store mixed types in ArrayList<Transaction> and filter by instanceof. Encapsulate all fields with getters. Make Transaction abstract with an abstract method for display."
+        },
+        {
+          "heading": "Streams and Collections in Action",
+          "content": "Use streams to calculate total income and expenses (filter + mapToDouble + sum), group expenses by category (Collectors.groupingBy + Collectors.summingDouble), and find the largest expense (max + Comparator). This is a real-world stream use case."
+        },
+        {
+          "heading": "File Persistence",
+          "content": "Save transactions as CSV (comma-separated values). Each line represents one transaction with all fields. On load, read each line, split by comma, check the type field, and reconstruct Income or Expense objects. Handle missing files gracefully."
+        }
+      ],
+      "examples": [
+        {
+          "title": "Transaction Class Hierarchy",
+          "code": "// Transaction.java (abstract base)\npublic abstract class Transaction {\n    private static int nextId = 1;\n    private int id;\n    private double amount;\n    private String description;\n    private String date;\n\n    public Transaction(double amount, String description, String date) {\n        this.id = nextId++;\n        this.amount = amount;\n        this.description = description;\n        this.date = date;\n    }\n\n    public int getId() { return id; }\n    public double getAmount() { return amount; }\n    public String getDescription() { return description; }\n    public String getDate() { return date; }\n\n    public abstract String getType();\n\n    @Override\n    public String toString() {\n        return String.format(\"[%d] %s | $%.2f | %s | %s\",\n            id, getType(), amount, description, date);\n    }\n}\n\n// Income.java\npublic class Income extends Transaction {\n    public Income(double amount, String description, String date) {\n        super(amount, description, date);\n    }\n    @Override\n    public String getType() { return \"INCOME\"; }\n}\n\n// Expense.java\npublic class Expense extends Transaction {\n    private String category;\n\n    public Expense(double amount, String description, String date, String category) {\n        super(amount, description, date);\n        this.category = category;\n    }\n\n    public String getCategory() { return category; }\n\n    @Override\n    public String getType() { return \"EXPENSE\"; }\n\n    @Override\n    public String toString() {\n        return super.toString() + \" | Category: \" + category;\n    }\n}",
+          "explanation": "Transaction is abstract with a static ID counter. Income and Expense extend it. Both implement getType() differently. Expense adds a category field. toString() in Transaction uses polymorphism — getType() calls the subclass version."
+        },
+        {
+          "title": "BudgetTracker Core Logic",
+          "code": "import java.util.*;\nimport java.util.stream.*;\n\npublic class BudgetTracker {\n    private ArrayList<Transaction> transactions = new ArrayList<>();\n\n    public void addTransaction(Transaction t) {\n        transactions.add(t);\n    }\n\n    public double getTotalIncome() {\n        return transactions.stream()\n            .filter(t -> t instanceof Income)\n            .mapToDouble(Transaction::getAmount)\n            .sum();\n    }\n\n    public double getTotalExpenses() {\n        return transactions.stream()\n            .filter(t -> t instanceof Expense)\n            .mapToDouble(Transaction::getAmount)\n            .sum();\n    }\n\n    public double getBalance() {\n        return getTotalIncome() - getTotalExpenses();\n    }\n\n    public Map<String, Double> getExpensesByCategory() {\n        return transactions.stream()\n            .filter(t -> t instanceof Expense)\n            .map(t -> (Expense) t)\n            .collect(Collectors.groupingBy(\n                Expense::getCategory,\n                Collectors.summingDouble(Expense::getAmount)\n            ));\n    }\n\n    public void printAll() {\n        if (transactions.isEmpty()) {\n            System.out.println(\"No transactions.\");\n            return;\n        }\n        transactions.forEach(System.out::println);\n        System.out.printf(\"%nIncome: $%.2f | Expenses: $%.2f | Balance: $%.2f%n\",\n            getTotalIncome(), getTotalExpenses(), getBalance());\n    }\n\n    public ArrayList<Transaction> getTransactions() {\n        return transactions;\n    }\n}",
+          "explanation": "BudgetTracker holds all transactions in an ArrayList. getTotalIncome filters for Income instances and sums amounts. getExpensesByCategory groups expenses using Collectors.groupingBy. getBalance simply subtracts totals."
+        }
+      ],
+      "exercise": [
+        {
+          "question": "Complete the Budget Tracker by implementing: (1) FileManager class to save/load transactions as CSV, (2) BudgetApp main class with a full menu loop, (3) input validation throughout. Test by adding several income and expense entries, saving to file, restarting the app, loading from file, and verifying the balance is correct.",
+          "hint": "For CSV format: type,amount,description,date(,category for expenses). On load, split by comma, check field[0] for 'INCOME' or 'EXPENSE' to decide which object to create."
+        },
+        {
+          "question": "Add a 'Monthly Summary' feature that groups all transactions by month (parse the first 7 characters of date as YYYY-MM) and prints totals for each month.",
+          "hint": "Use Collectors.groupingBy with t -> t.getDate().substring(0, 7) to group by YYYY-MM."
+        }
+      ],
+      "mini_project": "FINAL PROJECT: Complete the full Personal Budget Tracker with all 8 menu options, file save/load functionality, expense category breakdown using streams, formatted output, and thorough input validation. The completed application should feel like a real usable tool. Optionally add a category spending bar chart using characters like # to visualize amounts proportionally.",
+      "summary": "Congratulations on completing the Java Programming course! In this final lesson you applied the complete Java skillset: abstract classes and inheritance for the Transaction hierarchy, polymorphism for mixed-type collections, streams for filtering and aggregating data, file I/O for persistence, exception handling for robustness, and the full CLI app pattern. You have gone from printing 'Hello World' to building a real, working application. Next steps: explore Spring Boot for web applications, Android development with Java, or dive deeper into design patterns and data structures."
+    }
+  ]
+}

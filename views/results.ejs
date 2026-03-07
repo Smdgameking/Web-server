@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Your Exam Results</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#111;
+color:white;
+}
+
+.container{
+padding:40px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #444;
+text-align:left;
+}
+
+button{
+padding:10px 20px;
+background:#007bff;
+border:none;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Your Exam Results</h1>
+
+<table>
+
+<tr>
+<th>Topic</th>
+<th>Score</th>
+<th>Date</th>
+</tr>
+
+<% results.forEach(r=>{ %>
+
+<tr>
+<td><%= r.topic %></td>
+<td><%= r.score %></td>
+<td><%= new Date(r.date._seconds*1000).toLocaleDateString() %></td>
+</tr>
+
+<% }) %>
+
+</table>
+
+<br>
+
+<button onclick="goDashboard()">Back</button>
+
+</div>
+
+<script>
+
+function goDashboard(){
+window.location="/dashboard";
+}
+
+</script>
+
+</body>
+</html>
